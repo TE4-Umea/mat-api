@@ -3,14 +3,14 @@ const app = express()
 const cors = require('cors')
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
-const usersRouter = require('./routes/users');
-const mealsRouter = require('./routes/meals');
-const dishesRouter = require('./routes/dishes');
+const userRouter = require('./routes/user');
+const mealRouter = require('./routes/meal');
+const dishRouter = require('./routes/dish');
 
 app.use(cors())
 
-app.use('/api/users', usersRouter);
-app.use('/api/meals', mealsRouter);
-app.use('/api/dishes', dishesRouter);
+app.use('/api/user', userRouter);
+app.use('/api/meal', mealRouter);
+app.use('/api/dish', dishRouter);
 
 app.listen(3000)
