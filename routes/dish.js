@@ -8,7 +8,8 @@ const prisma = new PrismaClient()
 // pagination
 router.get(
     '/',
-    /* query(stuff), authByToken, stuff, */
+    /* query(stuff), 
+    authByToken, */
     async (req, res) => {
         const dishes = await prisma.dish.findMany({
             orderBy: {
