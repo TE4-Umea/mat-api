@@ -10,7 +10,10 @@ router.get('/', async (req, res) => {
     const meals = await prisma.meal.findMany({
         include: {
             dish: true
-        }
+        },
+        orderBy: {
+            id: 'desc',
+        },
     });
     res.json(meals);
 })
@@ -29,7 +32,10 @@ router.get(
             },
             include: {
                 dish: true
-            }
+            },
+            orderBy: {
+                id: 'desc',
+            },
         });
         res.json(meal);
     }

@@ -10,7 +10,11 @@ router.get(
     '/',
     /* query(stuff), authByToken, stuff, */
     async (req, res) => {
-        const dishes = await prisma.dish.findMany({});
+        const dishes = await prisma.dish.findMany({
+            orderBy: {
+                id: 'desc',
+            },
+        });
         res.json(dishes);
     }
 );
@@ -41,7 +45,10 @@ router.get(
                 name: {
                     contains: name
                 }
-            }
+            },
+            orderBy: {
+                id: 'desc',
+            },
         });
         res.json(dish);
     }
