@@ -9,9 +9,12 @@
 ```
 GET /api/dish
 ```
+Får ut alla maträtter som finns i databasen
+
+pagination?
 
 Utdata: 
-```
+```json
 [
   {
     "id": 7,
@@ -33,7 +36,7 @@ Get /api/dish/:id
 ```
 För att få ut en specifik maträtt
 
-```
+```json
 {
   "id": 7,
   "name": "Cheeseburgare"
@@ -45,8 +48,8 @@ GET /api/dish/search/:name
 ```
 Tar 'name' och visar alla maträtter som innehåller det namnet
 
-Utdata för burgare
-```
+Utdata för '/api/dish/search/burgare'
+```json
 [
   {
     "id": 7,
@@ -62,14 +65,16 @@ Utdata för burgare
 ```
 POST /api/dish
 ```
-För att lägga till en maträtt
+För att lägga till en maträtt. Behöver data från body, specifikt bara namnet. 
+
 
 ```
-{
-  "name": "Cheeseburgare"
-}
+DELETE /api/dish/:id
 ```
+För att ta bort en maträtt. Behöver id från maträtten som ska tas bort.
 
+
+### Meal - dina sparade måltider
 
 
 
