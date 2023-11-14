@@ -10,28 +10,28 @@ router.get(
     '/',
     /* query(stuff), authByToken, stuff, */
     async (req, res) => {
-        const dishes = await prisma.dish.findMany({
-            include: {
-                meals: true
-            }
-        });
+        const dishes = await prisma.dish.findMany({});
         res.json(dishes);
     }
 );
 
 // get:id /api/dish/:id
-router.get('/:id', async (req, res) => {
-    const { id } = req.params;
-    const dish = await prisma.dish.findUnique({
-        where: {
-            id: parseInt(id)
-        },
-        include: {
-            meals: true
-        }
-    });
-    res.json(dish);
-});
+router.get('/:id',
+    param('id').isInt(),
+    async (req, res) => {
+        const { id } = req.params;
+        const dish = await prisma.dish.findUnique({
+            where: {
+                id: parseInt(id)
+            },
+            // should you get the times you have eaten this here?
+            include: {
+                meals: true
+            }
+        });
+        res.json(dish);
+    }
+);
 
 // Search /api/dish/search/:name
 router.get(
@@ -53,7 +53,7 @@ router.get(
     }
 );
 
-// Create /api/dish
+// Create /api/dish, creates a new dish that everyone can use
 router.post('/', async (req, res) => {
     const { name } = req.body;
     const dish = await prisma.dish.create({
