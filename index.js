@@ -3,15 +3,14 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 async function main() {
-    // ... you will write your Prisma Client queries here
 
-    // await prisma.meal.create({
-    //     data: {
-    //         userId: 2,
-    //         dishId: 1,
-    //         type: 'lunch',
-    //     },
-    // })
+    await prisma.meal.create({
+        data: {
+            userId: 2,
+            dishId: 1,
+            type: 'lunch',
+        },
+    })
 
     const allMeals = await prisma.dish.findMany({
         orderBy: {

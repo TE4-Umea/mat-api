@@ -76,6 +76,7 @@ router.delete('/:id', param('id').isInt(), async (req, res) => {
     //         dishId: parseInt(id)
     //     }
     // });
+
     res.json(dish);
 });
 
