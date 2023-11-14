@@ -25,9 +25,6 @@ router.get('/:id',
                 id: parseInt(id)
             },
             // should you get the times you have eaten this here?
-            include: {
-                meals: true
-            }
         });
         res.json(dish);
     }
@@ -44,9 +41,6 @@ router.get(
                 name: {
                     contains: name
                 }
-            },
-            include: {
-                meals: true
             }
         });
         res.json(dish);
@@ -76,11 +70,12 @@ router.delete('/:id', param('id').isInt(), async (req, res) => {
     });
 
     // delete all meals with this dishId
-    const meal = await prisma.meal.deleteMany({
-        where: {
-            dishId: parseInt(id)
-        }
-    });
+    // Should someones past foods be deleted when I delete a dish? idk
+    // const meal = await prisma.meal.deleteMany({
+    //     where: {
+    //         dishId: parseInt(id)
+    //     }
+    // });
     res.json(dish);
 });
 
