@@ -11,8 +11,9 @@ datasource db {
 }
 
 model dish {
-  id   Int    @id @default(autoincrement())
-  name String @unique
+  id   Int     @id @default(autoincrement())
+  name String  @unique
+  icon String? //not migrated yet, here or in meal?
   meal meal[]
 }
 
