@@ -5,15 +5,25 @@ const prisma = new PrismaClient()
 async function main() {
     // ... you will write your Prisma Client queries here
 
-    await prisma.dish.create({
+    await prisma.meal.create({
         data: {
-            name: 'Korv med potatismos',
+            userId: 1,
+            dishId: 5,
+            type: 'lunch',
         },
     })
 
-    const allDishes = await prisma.dish.findMany({})
+    const allMeals = await prisma.meal.findMany({
+        orderBy: {
+            id: 'desc',
+        },
+        include: {
+            dish: true,
+            user: true,
+        },
+    })
 
-    console.dir(allDishes, { depth: null })
+    console.dir(allMeals, { depth: null })
 }
 
 main()
