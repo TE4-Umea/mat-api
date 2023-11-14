@@ -10,19 +10,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model meal {
-  id          Int    @id @default(autoincrement())
-  name        String
-  description String
+model dish {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  meal meal[]
 }
 
 model user {
-  id       Int    @id @default(autoincrement())
-  name     String
-  email    String @unique
-  password String
-  // relations
+  id    Int    @id @default(autoincrement())
+  email String @unique
+  meal  meal[]
 }
 
-model dish {
+model meal {
+  id     Int      @id @default(autoincrement())
+  time   DateTime @default(now())
+  type   String   @default("middag")
+  userId Int
+  user   user     @relation(fields: [userId], references: [id])
+  dishId Int
+  dish   dish     @relation(fields: [dishId], references: [id])
 }

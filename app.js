@@ -3,13 +3,14 @@ const app = express()
 const cors = require('cors')
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
+const usersRouter = require('./routes/users');
+const mealsRouter = require('./routes/meals');
+const dishesRouter = require('./routes/dishes');
 
 app.use(cors())
 
-app.get('/', async function (req, res) {
-    const allItems = await prisma.item.findMany({})
-
-    res.json({ data: allItems })
-})
+app.use('/api/users', usersRouter);
+app.use('/api/meals', mealsRouter);
+app.use('/api/dishes', dishesRouter);
 
 app.listen(3000)
