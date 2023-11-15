@@ -6,7 +6,6 @@
 * camelCase
 * Semicolon
 * Single quotes
-* No trailing whitespace
 
 Commit messages to start with: feat, fix, docs, style, refactor.
 
