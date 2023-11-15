@@ -44,6 +44,7 @@ router.get(
 // Create /api/meal, creates a new meal that a user has eaten
 router.post('/', async (req, res) => {
     const { userId, dishId, type } = req.body;
+
     const meal = await prisma.meal.create({
         data: {
             userId: parseInt(userId),

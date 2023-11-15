@@ -20,6 +20,8 @@ router.get(
     }
 );
 
+// Om du någonsin vill ha en api som håller koll på vad du har ätit så har jag en produkt för just dig
+
 // get:id /api/dish/:id
 router.get('/:id',
     param('id').isInt(),
@@ -50,6 +52,7 @@ router.get(
             orderBy: {
                 id: 'desc',
             },
+            take: 10,
         });
         res.json(dish);
     }
@@ -85,7 +88,7 @@ router.delete('/:id', param('id').isInt(), async (req, res) => {
     //     }
     // });
 
-    res.json(dish);
+    res.json(dish); // returns the deleted dish, kinda useless
 });
 
 module.exports = router;
