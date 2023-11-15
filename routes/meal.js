@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { body, param, query } = require('express-validator');
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
 // getAll /api/meal
 // add pagination
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
         },
     });
     res.json(meals);
-})
+});
 
 // Search /api/meal/search/:name
 router.get(
