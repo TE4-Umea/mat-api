@@ -23,7 +23,7 @@ module.exports = {
     },
     'rules': {
         'indent': [
-            'error',
+            0,
             4
         ],
         'linebreak-style': [
@@ -37,6 +37,9 @@ module.exports = {
         'semi': [
             2,
             'always'
-        ]
+        ],
+        'no-unused-vars': [
+            0
+        ],
     }
 };
