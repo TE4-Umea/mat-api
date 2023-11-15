@@ -8,7 +8,11 @@ module.exports.getAll = async (req, res) => {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
 
+    // TODO: sorted by user
     const meals = await prisma.meal.findMany({
+        // where: {
+        //     userId: parseInt(req.user.id)
+        // },
         include: {
             dish: true
         },
@@ -26,11 +30,23 @@ module.exports.search = async (req, res) => {
     }
 
     const { name } = req.params;
+
+    // sorted by user
     const meal = await prisma.meal.findMany({
         where: {
-            name: {
-                contains: name
-            }
+            AND: [
+                {
+                    dish: {
+                        name: {
+                            contains: name
+                        }
+                    },
+                },
+                {
+                    //userId: parseInt(req.user.id)
+                    userId: 1
+                }
+            ]
         },
         include: {
             dish: true

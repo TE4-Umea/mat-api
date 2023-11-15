@@ -13,16 +13,20 @@ router.get('/', mealController.getAll);
 // Search /api/meal/search/:name
 router.get(
     '/search/:name',
-    body('name').isString(),
+    param('name').isString(),
     mealController.search
 );
 
 // Create /api/meal, creates a new meal that a user has eaten
-router.post('/', mealController.create);
+router.post('/',
+    //body('stuff'),
+    mealController.create
+);
 
 // Update /api/meal/:id, updates a meal that a user has eaten
 router.put('/:id',
     param('id').isInt(),
+    //body('stuff'),
     mealController.update
 );
 

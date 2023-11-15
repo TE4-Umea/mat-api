@@ -24,12 +24,15 @@ router.get('/:id',
 // Search /api/dish/search/:name
 router.get(
     '/search/:name',
-    body('name').isString(),
+    param('name').isString(),
     dishController.search
 );
 
 // Create /api/dish, creates a new dish that everyone can use
-router.post('/', dishController.create);
+router.post('/',
+    //body('name').isString(),
+    dishController.create
+);
 
 // UPDATE?
 
