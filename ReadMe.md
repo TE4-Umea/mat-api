@@ -1,6 +1,14 @@
 # API för en matapp
 
+## Styleguide
+* Commonjs
+* 2 space indentation
+* camelCase
+* Semicolon
+* Single quotes
+* No trailing whitespace
 
+Commit messages to start with: feat, fix, docs, style, refactor.
 
 ## Exempel
 
