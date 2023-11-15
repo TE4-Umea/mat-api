@@ -4,10 +4,6 @@ const prisma = new PrismaClient();
 
 // getAll /api/meal
 module.exports.getAll = async (req, res) => {
-    if (!validationResult(req).isEmpty()) {
-        return res.status(400).json({ errors: validationResult(req).array() });
-    }
-
     const meals = await prisma.meal.findMany({
         include: {
             dish: true
@@ -44,10 +40,6 @@ module.exports.search = async (req, res) => {
 
 // Create /api/meal, creates a new meal that a user has eaten
 module.exports.create = async (req, res) => {
-    if (!validationResult(req).isEmpty()) {
-        return res.status(400).json({ errors: validationResult(req).array() });
-    }
-
     const { userId, dishId, type } = req.body;
 
     const meal = await prisma.meal.create({
@@ -62,10 +54,6 @@ module.exports.create = async (req, res) => {
 
 // Update /api/meal/:id, updates a meal that a user has eaten
 module.exports.update = async (req, res) => {
-    if (!validationResult(req).isEmpty()) {
-        return res.status(400).json({ errors: validationResult(req).array() });
-    }
-
     const { id } = req.params;
     const { userId, dishId, type } = req.body;
 
@@ -84,10 +72,6 @@ module.exports.update = async (req, res) => {
 
 // delete /api/meal/:id
 module.exports.delete = async (req, res) => {
-    if (!validationResult(req).isEmpty()) {
-        return res.status(400).json({ errors: validationResult(req).array() });
-    }
-
     const { id } = req.params;
     const meal = await prisma.meal.delete({
         where: {
