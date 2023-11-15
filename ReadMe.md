@@ -3,7 +3,8 @@
 ## Styleguide
 * Commonjs
 * 2 space indentation
-* camelCase
+* camelCase in code
+* snake_case in filenames
 * Semicolon
 * Single quotes
 

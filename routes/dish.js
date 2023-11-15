@@ -4,91 +4,39 @@ const { body, param, query } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const dishController = require('../controllers/dish_controller');
+
 // getAll /api/dish
 // pagination
 router.get(
     '/',
     /* query(stuff), 
     authByToken, */
-    async (req, res) => {
-        const dishes = await prisma.dish.findMany({
-            orderBy: {
-                id: 'desc',
-            },
-        });
-        res.json(dishes);
-    }
+    dishController.getAll
 );
-
-// Om du någonsin vill ha en api som håller koll på vad du har ätit så har jag en produkt för just dig
 
 // get:id /api/dish/:id
 router.get('/:id',
     param('id').isInt(),
-    async (req, res) => {
-        const { id } = req.params;
-        const dish = await prisma.dish.findUnique({
-            where: {
-                id: parseInt(id)
-            },
-            // should you get the times you have eaten this here?
-        });
-        res.json(dish);
-    }
+    dishController.getOne
 );
 
 // Search /api/dish/search/:name
 router.get(
     '/search/:name',
     body('name').isString(),
-    async (req, res) => {
-        const { name } = req.params;
-        const dish = await prisma.dish.findMany({
-            where: {
-                name: {
-                    contains: name
-                }
-            },
-            orderBy: {
-                id: 'desc',
-            },
-            take: 10,
-        });
-        res.json(dish);
-    }
+    dishController.search
 );
 
 // Create /api/dish, creates a new dish that everyone can use
-router.post('/', async (req, res) => {
-    const { name } = req.body;
-    const dish = await prisma.dish.create({
-        data: {
-            name
-        }
-    });
-    res.json(dish);
-});
+router.post('/', dishController.create);
 
 // UPDATE?
 
 // DELETE /api/dish/:id
-router.delete('/:id', param('id').isInt(), async (req, res) => {
-    const { id } = req.params;
-    const dish = await prisma.dish.delete({
-        where: {
-            id: parseInt(id)
-        }
-    });
-
-    // delete all meals with this dishId
-    // Should someones past foods be deleted when I delete a dish? idk
-    // const meal = await prisma.meal.deleteMany({
-    //     where: {
-    //         dishId: parseInt(id)
-    //     }
-    // });
-
-    res.json(dish); // returns the deleted dish, kinda useless
-});
+router.delete('/:id',
+    param('id').isInt(),
+    dishController.delete
+);
 
 module.exports = router;
