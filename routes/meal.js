@@ -8,7 +8,10 @@ const mealController = require('../controllers/meal_controller');
 
 // getAll /api/meal
 // add pagination
-router.get('/', mealController.getAll);
+router.get('/',
+    query('page').isInt(),
+    mealController.getAll
+);
 
 // Search /api/meal/search/:name
 router.get(

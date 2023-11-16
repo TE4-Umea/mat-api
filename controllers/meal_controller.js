@@ -7,9 +7,9 @@ module.exports.getAll = async (req, res) => {
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
+    const skip = req.query.page || 0;
 
     // TODO: sorted by user
-    // pagination
     const meals = await prisma.meal.findMany({
         // where: {
         //     userId: from users database
@@ -20,6 +20,8 @@ module.exports.getAll = async (req, res) => {
         orderBy: {
             time: 'desc',
         },
+        take: 10,
+        skip: 0 + (skip * 10),
     });
     res.json(meals);
 };
