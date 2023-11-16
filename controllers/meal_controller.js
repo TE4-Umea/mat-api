@@ -11,7 +11,7 @@ module.exports.getAll = async (req, res) => {
     // TODO: sorted by user
     const meals = await prisma.meal.findMany({
         // where: {
-        //     userId: parseInt(req.user.id)
+        //     userId: from users database
         // },
         include: {
             dish: true
@@ -43,7 +43,7 @@ module.exports.search = async (req, res) => {
                     },
                 },
                 {
-                    //userId: parseInt(req.user.id)
+                    //userId: from users database
                     userId: 1
                 }
             ]
