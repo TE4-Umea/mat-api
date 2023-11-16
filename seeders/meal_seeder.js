@@ -1,6 +1,6 @@
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require('@prisma/client');
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 async function main() {
     await prisma.meal.createMany({
@@ -11,15 +11,15 @@ async function main() {
             { userId: 2, dishId: 4, type: 'lunch' },
             { userId: 2, dishId: 2, type: 'middag' },
         ],
-    })
+    });
 }
 
 main()
     .then(async () => {
-        await prisma.$disconnect()
+        await prisma.$disconnect();
     })
     .catch(async (e) => {
-        console.error(e)
-        await prisma.$disconnect()
-        process.exit(1)
-    })
+        console.error(e);
+        await prisma.$disconnect();
+        process.exit(1);
+    });
