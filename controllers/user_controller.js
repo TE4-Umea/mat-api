@@ -40,17 +40,16 @@ module.exports.create = async (req, res) => {
 
     const userExists = await prisma.user.findUnique({
         where: {
-            email: 'testEmail15@email.com'
+            email: 'testEmail16@email.com'
         }
     });
-    console.log(userExists);
     if (userExists !== null) {
         return res.status(200).json('User already exists');
     }
 
     const user = await prisma.user.create({
         data: {
-            email: 'testEmail15@email.com',
+            email: 'testEmail16@email.com',
         }
     });
     res.json(user);
