@@ -13,7 +13,7 @@ router.get('/', mealController.getAll);
 // Search /api/meal/search/:name
 router.get(
     '/search/:name',
-    param('name').isString(),
+    param('name').isString().escape(),
     mealController.search
 );
 
