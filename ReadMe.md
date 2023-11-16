@@ -17,7 +17,7 @@ Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
 ```
 GET /api/dish
 ```
-Får ut alla maträtter som finns i databasen
+Får ut alla maträtter som finns i databasen.
 
 <!-- TODO: pagination? -->
 
@@ -44,7 +44,7 @@ Utdata:
 ```
 Get /api/dish/:id
 ```
-För att få ut en specifik maträtt
+För att få ut en specifik maträtt.
 
 ```json
 {
@@ -58,7 +58,7 @@ För att få ut en specifik maträtt
 ```
 GET /api/dish/search/:name
 ```
-Tar 'name' och visar upp till 10 maträtter som innehåller det namnet
+Tar 'name' och visar upp till 10 maträtter som innehåller det namnet. Bör användas för att visa maträtter när användaren ska lägga till ny måltid.
 
 Utdata för '/api/dish/search/burgare'
 ```json
@@ -143,7 +143,7 @@ Får ut alla sparade måltider i ordningen av senast datum.
 ```
 GET /api/meal/search/:name
 ```
-Tar 'name' och visar de senaste 10 måltiderna som innehåller det namnet
+Tar 'name' och visar de senaste 10 måltiderna som innehåller det namnet. Bör användas för att visa måltider när användaren söker igenom sina uppättna måltider. 
 
 ```
 [
