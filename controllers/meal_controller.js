@@ -9,6 +9,7 @@ module.exports.getAll = async (req, res) => {
     }
 
     // TODO: sorted by user
+    // pagination
     const meals = await prisma.meal.findMany({
         // where: {
         //     userId: from users database
@@ -17,7 +18,7 @@ module.exports.getAll = async (req, res) => {
             dish: true
         },
         orderBy: {
-            id: 'desc',
+            time: 'desc',
         },
     });
     res.json(meals);
@@ -32,6 +33,7 @@ module.exports.search = async (req, res) => {
     const { name } = req.params;
 
     // sorted by user
+    // takes 10
     const meal = await prisma.meal.findMany({
         where: {
             AND: [
@@ -54,6 +56,7 @@ module.exports.search = async (req, res) => {
         orderBy: {
             id: 'desc',
         },
+        take: 10
     });
     res.json(meal);
 };
@@ -70,7 +73,8 @@ module.exports.create = async (req, res) => {
         data: {
             userId: parseInt(userId),
             dishId: parseInt(dishId),
-            type: type
+            type: type,
+            //time: Date() from dropdown
         }
     });
     res.json(meal);
