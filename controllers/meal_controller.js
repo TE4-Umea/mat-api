@@ -4,13 +4,24 @@ const prisma = new PrismaClient();
 
 // getAll /api/meal
 module.exports.getAll = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
+    const skip = req.query.page || 0;
+
+    // TODO: sorted by user
     const meals = await prisma.meal.findMany({
+        // where: {
+        //     userId: from users database
+        // },
         include: {
             dish: true
         },
         orderBy: {
-            id: 'desc',
+            time: 'desc',
         },
+        take: 10,
+        skip: 0 + (skip * 10),
     });
     res.json(meals);
 };
@@ -22,11 +33,24 @@ module.exports.search = async (req, res) => {
     }
 
     const { name } = req.params;
+
+    // sorted by user
+    // takes 10
     const meal = await prisma.meal.findMany({
         where: {
-            name: {
-                contains: name
-            }
+            AND: [
+                {
+                    dish: {
+                        name: {
+                            contains: name
+                        }
+                    },
+                },
+                {
+                    //userId: from users database
+                    userId: 1
+                }
+            ]
         },
         include: {
             dish: true
@@ -34,6 +58,7 @@ module.exports.search = async (req, res) => {
         orderBy: {
             id: 'desc',
         },
+        take: 10
     });
     res.json(meal);
 };
@@ -46,7 +71,8 @@ module.exports.create = async (req, res) => {
         data: {
             userId: parseInt(userId),
             dishId: parseInt(dishId),
-            type: type
+            type: type,
+            //time: Date() from dropdown
         }
     });
     res.json(meal);

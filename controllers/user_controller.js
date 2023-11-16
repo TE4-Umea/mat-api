@@ -25,10 +25,23 @@ module.exports.getOne = async (req, res) => {
 
 // create /api/user, creates a new user
 module.exports.create = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
     //const { email } = req.body; // not req.body, use auth instead 
+
+    const userExists = await prisma.user.findUnique({
+        where: {
+            email: 'testEmail16@email.com'
+        }
+    });
+    if (userExists !== null) {
+        return res.status(400).json('User already exists');
+    }
+
     const user = await prisma.user.create({
         data: {
-            email: 'testEmail14@email.com',
+            email: 'testEmail16@email.com',
         }
     });
     res.json(user);

@@ -10,8 +10,8 @@ const dishController = require('../controllers/dish_controller');
 // pagination
 router.get(
     '/',
-    /* query(stuff), 
-    authByToken, */
+    query('page').isInt(),
+    // authByToken,
     dishController.getAll
 );
 
@@ -24,12 +24,15 @@ router.get('/:id',
 // Search /api/dish/search/:name
 router.get(
     '/search/:name',
-    body('name').isString(),
+    param('name').isString().escape(),
     dishController.search
 );
 
 // Create /api/dish, creates a new dish that everyone can use
-router.post('/', dishController.create);
+router.post('/',
+    //body('name').isString().escape(),
+    dishController.create
+);
 
 // UPDATE?
 

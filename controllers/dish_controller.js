@@ -4,10 +4,14 @@ const prisma = new PrismaClient();
 
 // getAll /api/dish
 module.exports.getAll = async (req, res) => {
+    const skip = req.query.page || 0;
+
     const dishes = await prisma.dish.findMany({
         orderBy: {
             id: 'desc',
         },
+        take: 10,
+        skip: 0 + (skip * 10),
     });
     res.json(dishes);
 };
@@ -61,8 +65,8 @@ module.exports.delete = async (req, res) => {
         }
     });
 
+    // Should someone elses past foods be deleted when I delete a dish? idk
     // delete all meals with this dishId
-    // Should someones past foods be deleted when I delete a dish? idk
     // const meal = await prisma.meal.deleteMany({
     //     where: {
     //         dishId: parseInt(id)

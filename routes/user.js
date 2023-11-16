@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 const userController = require('../controllers/user_controller');
 
-// idk
+// idk, im not sure how or which of these are gonna get used
 
 // getAll /api/user
 router.get('/', userController.getAll);
@@ -19,14 +19,13 @@ router.get('/:id',
 
 // create /api/user, creates a new user
 router.post('/',
-    query('email').isEmail().normalizeEmail(),
+    //body('email').isEmail().normalizeEmail(), // not sure how email comes from auth
     userController.create
 );
 
 // login? /api/user/login, logs in a user
 
 // delete /api/user/:id, deletes user and all meals associated with them
-// tested manually and works
 router.delete('/:id',
     param('id').isInt(),
     userController.delete
