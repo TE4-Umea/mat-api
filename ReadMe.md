@@ -15,11 +15,9 @@ Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
 ### Dish - allmänna maträtter
 
 ```
-GET /api/dish
+GET /api/dish || /api/dish?page=1
 ```
-Får ut alla maträtter som finns i databasen.
-
-<!-- TODO: pagination? -->
+Får ut en sida maträtter (20? st) av alla som finns i databasen. Page börja på 0, så `/api/dish` och `/api/dish?page=0` är samma sak. Page=1 är alltså sida 2.
 
 Utdata: 
 ```json
@@ -35,7 +33,8 @@ Utdata:
   {
     "id": 3,
     "name": "Korv med potatismos"
-  }
+  },
+  ...
 ]
 ```
 
@@ -92,13 +91,12 @@ För att ta bort en maträtt. Behöver id från maträtten som ska tas bort.
 ### Meal - dina sparade måltider
 
 ```
-GET /api/meal
+GET /api/meal || /api/meal?page=1
 ```
 
-Får ut alla sparade måltider i ordningen av senast datum.
+Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum. Page börja på 0, så `/api/meal` och `/api/meal?page=0` är samma sak. Page=1 är alltså sida 2.
 
 <!-- TODO: få bara userns måltider  -->
-<!-- TODO: pagination? -->
 
 ```json
 [
