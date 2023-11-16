@@ -77,7 +77,7 @@ module.exports.delete = async (req, res) => {
         }
     });
 
-    // Should someones past foods be deleted when I delete a dish? idk
+    // Should someone elses past foods be deleted when I delete a dish? idk
     // delete all meals with this dishId
     // const meal = await prisma.meal.deleteMany({
     //     where: {
