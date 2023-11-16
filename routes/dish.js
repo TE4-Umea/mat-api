@@ -10,8 +10,8 @@ const dishController = require('../controllers/dish_controller');
 // pagination
 router.get(
     '/',
-    /* query(stuff), 
-    authByToken, */
+    query('page').isInt(),
+    // authByToken,
     dishController.getAll
 );
 
