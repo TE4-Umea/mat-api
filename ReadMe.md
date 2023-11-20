@@ -187,7 +187,10 @@ För att ta bort en måltid. Behöver id från måltiden som ska tas bort.
 ### User - användare
 
 
-
+```
+POST /api/user/:email
+```
+Skapar användare i databasen. Behöver email från login.
 
 
 
