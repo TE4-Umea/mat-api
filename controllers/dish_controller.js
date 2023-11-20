@@ -4,6 +4,10 @@ const prisma = new PrismaClient();
 
 // getAll /api/dish
 module.exports.getAll = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
+    console.log(req.query.page);
     const skip = req.query.page || 0;
 
     const dishes = await prisma.dish.findMany({
@@ -18,6 +22,9 @@ module.exports.getAll = async (req, res) => {
 
 // get:id /api/dish/:id
 module.exports.getOne = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
     const { id } = req.params;
     const dish = await prisma.dish.findUnique({
         where: {
@@ -30,6 +37,9 @@ module.exports.getOne = async (req, res) => {
 
 // Search /api/dish/search/:name
 module.exports.search = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
     const { name } = req.params;
     const dish = await prisma.dish.findMany({
         where: {
@@ -47,6 +57,9 @@ module.exports.search = async (req, res) => {
 
 // Create /api/dish
 module.exports.create = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
     //const { name } = req.body;
     const dish = await prisma.dish.create({
         data: {
@@ -58,6 +71,9 @@ module.exports.create = async (req, res) => {
 
 // delete /api/dish/:id
 module.exports.delete = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
     const { id } = req.params;
     const dish = await prisma.dish.delete({
         where: {

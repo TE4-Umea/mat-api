@@ -7,7 +7,6 @@ const prisma = new PrismaClient();
 const dishController = require('../controllers/dish_controller');
 
 // getAll /api/dish
-// pagination
 router.get(
     '/',
     query('page').isInt(),
