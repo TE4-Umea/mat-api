@@ -190,7 +190,7 @@ För att ta bort en måltid. Behöver id från måltiden som ska tas bort.
 ```
 POST /api/user/:email
 ```
-Skapar användare i databasen. Behöver email från login.
+Skapar användare i databasen. Behöver email från login, typ `session.user.email`.
 
 
 
