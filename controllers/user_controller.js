@@ -37,6 +37,7 @@ module.exports.create = async (req, res) => {
     });
     if (userExists !== null) {
         return res.status(400).json('User already exists');
+        // return res.json(userExists);
     }
 
     const user = await prisma.user.create({
