@@ -8,7 +8,7 @@ const mealController = require('../controllers/meal_controller');
 
 // getAll /api/meal
 router.get('/',
-    query('page').isInt(),
+    //query('page').isInt(), // it breaks if you don't include a page
     mealController.getAll
 );
 

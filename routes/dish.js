@@ -9,7 +9,7 @@ const dishController = require('../controllers/dish_controller');
 // getAll /api/dish
 router.get(
     '/',
-    query('page').isInt(),
+    //query('page').isInt(), // it breaks if you don't include a page
     // authByToken,
     dishController.getAll
 );
