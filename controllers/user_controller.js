@@ -28,11 +28,11 @@ module.exports.create = async (req, res) => {
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
-    //const { email } = req.body; // not req.body, use auth instead 
+    const { email } = req.params; // idk 
 
     const userExists = await prisma.user.findUnique({
         where: {
-            email: 'testEmail16@email.com'
+            email: email
         }
     });
     if (userExists !== null) {
@@ -41,7 +41,7 @@ module.exports.create = async (req, res) => {
 
     const user = await prisma.user.create({
         data: {
-            email: 'testEmail16@email.com',
+            email: email,
         }
     });
     res.json(user);
