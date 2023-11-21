@@ -7,7 +7,6 @@ module.exports.getAll = async (req, res) => {
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
-    console.log(req.query.page);
     const skip = req.query.page || 0;
 
     const dishes = await prisma.dish.findMany({
