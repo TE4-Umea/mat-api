@@ -13,6 +13,11 @@ Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
 ## Exempel
 
 ### Dish - allmänna maträtter
+<!-- 
+TODO: alla kanske ska få auth/email från användaren. 
+Typ fetch/post meals med ?email=... och få ut måltider för den användarens id.
+Inte relevant för dishes för det mesta?
+-->
 
 ```
 GET /api/dish || /api/dish?page=1
@@ -94,9 +99,9 @@ För att ta bort en maträtt. Behöver id från maträtten som ska tas bort.
 GET /api/meal || /api/meal?page=1
 ```
 
-Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum. Page börja på 0, så `/api/meal` och `/api/meal?page=0` är samma sak. Page=1 är alltså sida 2.
+Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum. Page börja på 0, så `/api/meal` och `/api/meal?page=0` är samma sak. Page=1 är alltså sida 2. `time` bör användas för att visa bara datumet för måltiden, vilket tid det är är inte viktigt.
 
-<!-- TODO: få bara userns måltider  -->
+<!-- TODO: få bara användarens måltider  -->
 
 ```json
 [
@@ -143,7 +148,7 @@ GET /api/meal/search/:name
 ```
 Tar 'name' och visar de senaste 10 måltiderna som innehåller det namnet. Bör användas för att visa måltider när användaren söker igenom sina uppättna måltider. 
 
-```
+```json
 [
   {
     "id": 4,
@@ -187,7 +192,10 @@ För att ta bort en måltid. Behöver id från måltiden som ska tas bort.
 ### User - användare
 
 
-
+```
+POST /api/user/:email
+```
+Skapar användare i databasen. Behöver email från login, typ `session.user.email`.
 
 
 

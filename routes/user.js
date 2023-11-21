@@ -18,8 +18,8 @@ router.get('/:id',
 );
 
 // create /api/user, creates a new user
-router.post('/',
-    //body('email').isEmail().normalizeEmail(), // not sure how email comes from auth
+router.post('/:email',
+    param('email').isEmail().normalizeEmail(), // not sure how email comes from auth
     userController.create
 );
 

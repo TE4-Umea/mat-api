@@ -7,9 +7,8 @@ const prisma = new PrismaClient();
 const mealController = require('../controllers/meal_controller');
 
 // getAll /api/meal
-// add pagination
 router.get('/',
-    query('page').isInt(),
+    query('page').isInt().optional({ nullable: true }),
     mealController.getAll
 );
 
