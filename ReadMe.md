@@ -13,6 +13,11 @@ Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
 ## Exempel
 
 ### Dish - allmänna maträtter
+<!-- 
+TODO: alla kanske ska få auth/email från användaren. 
+Typ fetch/post meals med ?email=... och få ut måltider för den användarens id.
+Inte relevant för dishes för det mesta?
+-->
 
 ```
 GET /api/dish || /api/dish?page=1
@@ -96,7 +101,7 @@ GET /api/meal || /api/meal?page=1
 
 Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum. Page börja på 0, så `/api/meal` och `/api/meal?page=0` är samma sak. Page=1 är alltså sida 2. `time` bör användas för att visa bara datumet för måltiden, vilket tid det är är inte viktigt.
 
-<!-- TODO: få bara userns måltider  -->
+<!-- TODO: få bara användarens måltider  -->
 
 ```json
 [
