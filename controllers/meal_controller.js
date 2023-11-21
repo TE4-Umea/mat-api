@@ -91,6 +91,7 @@ module.exports.update = async (req, res) => {
             userId: parseInt(userId),
             dishId: parseInt(dishId),
             type: type
+            //time: Date() from dropdown?
         }
     });
     res.json(meal);
