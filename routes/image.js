@@ -4,9 +4,10 @@ const { body, param, query } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-router.get('/id', async (req, res) => {
+router.get('/:name', async (req, res) => {
     // get image
-
+    const name = req.params.name;
+    return res.sendFile(name, { root: './public/images' });
 });
 
 module.exports = router;

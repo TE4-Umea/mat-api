@@ -16,6 +16,6 @@ app.use(helmet());
 app.use('/api/user', userRouter);
 app.use('/api/meal', mealRouter);
 app.use('/api/dish', dishRouter);
-app.use('/api/image', imageRouter);
+app.use('/api/img', imageRouter);
 
 app.listen(3000);
