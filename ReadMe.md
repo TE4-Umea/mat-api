@@ -10,6 +10,9 @@
 
 Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
 
+## JWT Token
+När du loggar in skapas det en JWT token av din info som kommer tillbaka till dig i frontenden och som du ska spara i localstorage. Den tokenen ska skickas med i headern på alla requests som görs till API:et. När du loggar ut ska du ta bort tokenen från localstorage.
+
 ## Exempel
 
 ### Dish - allmänna maträtter

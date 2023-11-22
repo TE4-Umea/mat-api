@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const jwt = require('jsonwebtoken');
 
 // getAll /api/user
 module.exports.getAll = async (req, res) => {
@@ -35,17 +36,20 @@ module.exports.create = async (req, res) => {
             email: email
         }
     });
-    if (userExists !== null) {
-        return res.status(400).json('User already exists');
-        // return res.json(userExists);
+    if (userExists === null) {
+        const user = await prisma.user.create({
+            data: {
+                email: email,
+            }
+        });
+        console.log(user);
     }
 
-    const user = await prisma.user.create({
-        data: {
-            email: email,
-        }
-    });
-    res.json(user);
+    // JWT token
+    const jwtSecretKey = process.env.JWT_SECRET;
+
+    const token = jwt.sign(email, jwtSecretKey);
+    res.status(200).json(token);
 };
 
 // login? /api/user/login, logs in a user
