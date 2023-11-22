@@ -8,6 +8,8 @@ module.exports.getAll = async (req, res) => {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
     const skip = req.query.page || 0;
+    console.log(req.headers);
+    console.log(req.headers['jwt-test']);
 
     // TODO: sorted by user
     const meals = await prisma.meal.findMany({
