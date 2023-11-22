@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const jwt = require('jsonwebtoken');
 
 // getAll /api/meal
 module.exports.getAll = async (req, res) => {
@@ -8,8 +9,21 @@ module.exports.getAll = async (req, res) => {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
     const skip = req.query.page || 0;
-    console.log(req.headers);
-    console.log(req.headers['jwt-test']);
+
+    try {
+        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
+        console.log('token checked');
+        if (verified) {
+            // Access Granted
+            console.log('access granted');
+        } else {
+            // Access Denied
+            return res.status(401).json({ message: 'error' });
+        }
+    } catch (err) {
+        console.log(err);
+        return res.status(401).json({ message: 'error' });
+    }
 
     // TODO: sorted by user
     const meals = await prisma.meal.findMany({

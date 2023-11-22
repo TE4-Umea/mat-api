@@ -28,6 +28,7 @@ router.post('/:email',
 // delete /api/user/:id, deletes user and all meals associated with them
 router.delete('/:id',
     param('id').isInt(),
+    header('jwt-token').isJWT(),
     userController.delete
 );
 
