@@ -15,8 +15,17 @@ Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
 ### Dish - allmänna maträtter
 <!-- 
 TODO: alla kanske ska få auth/email från användaren. 
-Typ fetch/post meals med ?email=... och få ut måltider för den användarens id.
+Typ fetch/post meals med JWT och få ut måltider för den användarens id.
 Inte relevant för dishes för det mesta?
+
+Works maybe?
+fetch("/api/auth", {
+      method: "POST",
+      headers: {
+        "jwt-token": token,
+      },
+      body: JSON.stringify({ username, password }),
+    })
 -->
 
 ```
