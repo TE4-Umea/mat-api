@@ -17,12 +17,11 @@ När du loggar in skapas det en JWT token av din info som kommer tillbaka till d
 
 ### Dish - allmänna maträtter
 <!-- 
-TODO: alla kanske ska få auth/email från användaren. 
-Typ fetch/post meals med JWT och få ut måltider för den användarens id.
+Varje fetch/post meals ska ha headern 'jwt-token' med innehållet JWT och få ut måltider för den användarens id.
 Inte relevant för dishes för det mesta?
 
-Works maybe?
-fetch("/api/auth", {
+Works ish?
+fetch("/api/user", {
       method: "POST",
       headers: {
         "jwt-token": token,
