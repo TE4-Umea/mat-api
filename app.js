@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const userRouter = require('./routes/user');
 const mealRouter = require('./routes/meal');
 const dishRouter = require('./routes/dish');
+const imageRouter = require('./routes/image');
 
 app.use(cors());
 app.use(helmet());
@@ -15,5 +16,6 @@ app.use(helmet());
 app.use('/api/user', userRouter);
 app.use('/api/meal', mealRouter);
 app.use('/api/dish', dishRouter);
+app.use('/api/img', imageRouter);
 
 app.listen(3000);
