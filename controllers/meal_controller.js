@@ -10,26 +10,29 @@ module.exports.getAll = async (req, res) => {
     }
     const skip = req.query.page || 0;
 
+    let tokenInfo;
     try {
         const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
         console.log('token checked');
         if (verified) {
             // Access Granted
             console.log('access granted');
+            tokenInfo = jwt.decode(req.headers['jwt-token']);
+            console.log(tokenInfo);
         } else {
             // Access Denied
-            return res.status(401).json({ message: 'error' });
+            return res.status(401).json({ message: 'error: bad token' });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ message: 'error' });
+        return res.status(401).json({ message: 'error: bad token' });
     }
 
     // TODO: sorted by user
     const meals = await prisma.meal.findMany({
-        // where: {
-        //     userId: from users database
-        // },
+        where: {
+            userId: tokenInfo.id
+        },
         include: {
             dish: true
         },
@@ -41,6 +44,7 @@ module.exports.getAll = async (req, res) => {
     });
     res.json(meals);
 };
+// ^^^^ fully works
 
 // Search /api/meal/search/:name
 module.exports.search = async (req, res) => {

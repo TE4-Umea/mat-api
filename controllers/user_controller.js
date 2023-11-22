@@ -24,7 +24,7 @@ module.exports.getOne = async (req, res) => {
     res.json(user);
 };
 
-// create /api/user, creates a new user
+// create /api/user, creates a new user or logs in an existing user
 module.exports.create = async (req, res) => {
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
@@ -50,12 +50,8 @@ module.exports.create = async (req, res) => {
         token = jwt.sign(userExists, jwtSecretKey);
     }
 
-    // JWT token
     res.status(200).send(token);
 };
-
-// login? /api/user/login, logs in a user
-
 
 // delete /api/user/:id, deletes user and all meals associated with them
 module.exports.delete = async (req, res) => {
