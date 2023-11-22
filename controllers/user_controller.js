@@ -30,6 +30,8 @@ module.exports.create = async (req, res) => {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
     const { email } = req.params; // idk 
+    const jwtSecretKey = process.env.JWT_SECRET;
+    let token;
 
     const userExists = await prisma.user.findUnique({
         where: {
@@ -42,14 +44,14 @@ module.exports.create = async (req, res) => {
                 email: email,
             }
         });
-        console.log(user);
+
+        token = jwt.sign(user, jwtSecretKey);
+    } else {
+        token = jwt.sign(userExists, jwtSecretKey);
     }
 
     // JWT token
-    const jwtSecretKey = process.env.JWT_SECRET;
-
-    const token = jwt.sign(email, jwtSecretKey);
-    res.status(200).json(token);
+    res.status(200).send(token);
 };
 
 // login? /api/user/login, logs in a user
