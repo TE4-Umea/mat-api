@@ -2,10 +2,10 @@
 
 ## Styleguide
 * Commonjs
-* 2 mellanslags-indentering
+* 4 mellanslags-indentering
 * camelCase i kod
 * snake_case i filnamn
-* Semicolon efter varje rad
+* Semicolon efter varje kod-rad
 * Enkelfnuttar
 
 Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
