@@ -129,7 +129,7 @@ module.exports.create = async (req, res) => {
             //time: Date() from dropdown    // time from dropdown
         }
     });
-    res.json(meal);
+    res.json(meal);     // TODO: do I need to return anything?
 };
 
 // Update /api/meal/:id, updates a meal that a user has eaten

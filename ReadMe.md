@@ -25,7 +25,7 @@ Skapar användare eller loggar in användaren. Behöver email från frontend-log
 ```js
 fetch("/api/...", {
   ...
-  method: "POST" || "GET" || "DELETE" || "PUT", // use the correct one of these, deault is GET
+  method: "POST" || "GET" || "DELETE" || "PUT", // use the correct one of these, default is GET
   headers: {
     "jwt-token": localStorage.getItem("jwt-token"),
   },
