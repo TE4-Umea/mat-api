@@ -25,7 +25,7 @@ Skapar användare eller loggar in användaren. Behöver email från frontend-log
 ```js
 fetch("/api/...", {
   ...
-  method: "POST" || "GET" || "DELETE" || "PUT", // use the correct one of these
+  method: "POST" || "GET" || "DELETE" || "PUT", // use the correct one of these, deault is GET
   headers: {
     "jwt-token": localStorage.getItem("jwt-token"),
   },
@@ -34,6 +34,14 @@ fetch("/api/...", {
 ```
 
 #### OBS: ALLA ANROP NEDAN MÅSTE HA DENNA HEADER MED!
+
+***
+
+För att logga ut användaren så räcker det att du tar bort JWT-tokenen från localstorage.
+
+```js
+localStorage.removeItem("jwt-token");
+```
 
 ***
 
