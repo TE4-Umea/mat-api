@@ -56,6 +56,25 @@ module.exports.create = async (req, res) => {
 // delete /api/user/:id, deletes user and all meals associated with them
 module.exports.delete = async (req, res) => {
     const { id } = req.params;
+
+    let tokenInfo;
+    try {
+        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
+        console.log('token checked');
+        if (verified) {
+            // Access Granted
+            console.log('access granted');
+            tokenInfo = jwt.decode(req.headers['jwt-token']);
+            console.log(tokenInfo);
+        } else {
+            // Access Denied
+            return res.status(401).json({ message: 'error: bad token' });
+        }
+    } catch (err) {
+        console.log(err);
+        return res.status(401).json({ message: 'error: bad token' });
+    }
+
     const meal = await prisma.meal.deleteMany({
         where: {
             userId: parseInt(id)
