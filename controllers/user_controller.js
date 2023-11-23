@@ -5,23 +5,16 @@ const jwt = require('jsonwebtoken');
 
 // getAll /api/user
 module.exports.getAll = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
+
     const users = await prisma.user.findMany({
         orderBy: {
             id: 'desc',
         },
     });
     res.json(users);
-};
-
-// get:id /api/user/:id
-module.exports.getOne = async (req, res) => {
-    const { id } = req.params;
-    const user = await prisma.user.findUnique({
-        where: {
-            id: parseInt(id)
-        },
-    });
-    res.json(user);
 };
 
 // create /api/user, creates a new user or logs in an existing user
@@ -55,7 +48,9 @@ module.exports.create = async (req, res) => {
 
 // delete /api/user/:id, deletes user and all meals associated with them
 module.exports.delete = async (req, res) => {
-    const { id } = req.params;
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
 
     let tokenInfo;
     try {
@@ -77,13 +72,13 @@ module.exports.delete = async (req, res) => {
 
     const meal = await prisma.meal.deleteMany({
         where: {
-            userId: parseInt(id)
+            userId: tokenInfo.id
         }
     });
 
     const user = await prisma.user.delete({
         where: {
-            id: parseInt(id)
+            id: tokenInfo.id
         }
     });
 

@@ -11,12 +11,6 @@ const userController = require('../controllers/user_controller');
 // getAll /api/user
 router.get('/', userController.getAll);
 
-// get:id /api/user/:id
-router.get('/:id',
-    param('id').isInt(),
-    userController.getOne
-);
-
 // create /api/user, creates a new user
 router.post('/:email',
     param('email').isEmail().normalizeEmail(), // not sure how email comes from auth
@@ -26,8 +20,7 @@ router.post('/:email',
 // login? /api/user/login, logs in a user
 
 // delete /api/user/:id, deletes user and all meals associated with them
-router.delete('/:id',
-    param('id').isInt(),
+router.delete('/',
     header('jwt-token').isJWT(),
     userController.delete
 );
