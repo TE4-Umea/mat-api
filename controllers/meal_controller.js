@@ -13,12 +13,9 @@ module.exports.getAll = async (req, res) => {
     let tokenInfo;
     try {
         const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        console.log('token checked');
         if (verified) {
             // Access Granted
-            console.log('access granted');
             tokenInfo = jwt.decode(req.headers['jwt-token']);
-            console.log(tokenInfo);
         } else {
             // Access Denied
             return res.status(401).json({ message: 'error: bad token' });
@@ -56,12 +53,9 @@ module.exports.search = async (req, res) => {
     let tokenInfo;
     try {
         const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        console.log('token checked');
         if (verified) {
             // Access Granted
-            console.log('access granted');
             tokenInfo = jwt.decode(req.headers['jwt-token']);
-            console.log(tokenInfo);
         } else {
             // Access Denied
             return res.status(401).json({ message: 'error: bad token' });
@@ -106,12 +100,9 @@ module.exports.create = async (req, res) => {
     let tokenInfo;
     try {
         const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        console.log('token checked');
         if (verified) {
             // Access Granted
-            console.log('access granted');
             tokenInfo = jwt.decode(req.headers['jwt-token']);
-            console.log(tokenInfo);
         } else {
             // Access Denied
             return res.status(401).json({ message: 'error: bad token' });
@@ -140,12 +131,9 @@ module.exports.update = async (req, res) => {
     let tokenInfo;
     try {
         const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        console.log('token checked');
         if (verified) {
             // Access Granted
-            console.log('access granted');
             tokenInfo = jwt.decode(req.headers['jwt-token']);
-            console.log(tokenInfo);
         } else {
             // Access Denied
             return res.status(401).json({ message: 'error: bad token' });
@@ -176,12 +164,9 @@ module.exports.delete = async (req, res) => {
     let tokenInfo;
     try {
         const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        console.log('token checked');
         if (verified) {
             // Access Granted
-            console.log('access granted');
             tokenInfo = jwt.decode(req.headers['jwt-token']);
-            console.log(tokenInfo);
         } else {
             // Access Denied
             return res.status(401).json({ message: 'error: bad token' });
