@@ -20,7 +20,7 @@ När du loggar in skapas det en JWT token av din info som kommer tillbaka till d
 ```
 POST /api/user/:email
 ```
-Skapar användare i databasen. Behöver email från login, typ `session.user.email`. Ger tillbaka en JWT-token som ska sparas i localstorage och användas genom att skicka den som `header` i calls till API:et. För att skicka med den behövs det headern `jwt-token` med JWT-tokenen som värde. Det ser ut ungefär såhär:
+Skapar användare eller loggar in användaren. Behöver email från frontend-login, typ `session.user.email`. Ger tillbaka en JWT-token som ska sparas i localstorage och användas genom att skicka den som `header` i calls till API:et. För att skicka med den behövs det headern `jwt-token` med JWT-tokenen som värde. Det ser ut ungefär såhär:
 
 ```js
 fetch("/api/...", {
@@ -125,11 +125,12 @@ För att lägga till en maträtt. Behöver data från body, specifikt bara namne
 
 ***
 
+<!-- TODO: Jag vet inte om jag vill att användare ska kunna to bort dishes hur som helst
 ```
 DELETE /api/dish/:id
 ```
 För att ta bort en maträtt. Behöver id från maträtten som ska tas bort.
-
+-->
 
 ### Meal - dina sparade måltider
 
