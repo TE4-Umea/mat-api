@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { body, param, query } = require('express-validator');
+const { body, param, query, header } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
@@ -10,13 +10,14 @@ const dishController = require('../controllers/dish_controller');
 router.get(
     '/',
     query('page').isInt().optional({ nullable: true }),
-    // authByToken,
+    header('jwt-token').isJWT(),
     dishController.getAll
 );
 
 // get:id /api/dish/:id
 router.get('/:id',
     param('id').isInt(),
+    header('jwt-token').isJWT(),
     dishController.getOne
 );
 
@@ -24,12 +25,14 @@ router.get('/:id',
 router.get(
     '/search/:name',
     param('name').isString().escape(),
+    header('jwt-token').isJWT(),
     dishController.search
 );
 
 // Create /api/dish, creates a new dish that everyone can use
 router.post('/',
     //body('name').isString().escape(),
+    header('jwt-token').isJWT(),
     dishController.create
 );
 
@@ -38,6 +41,7 @@ router.post('/',
 // DELETE /api/dish/:id
 router.delete('/:id',
     param('id').isInt(),
+    header('jwt-token').isJWT(),
     dishController.delete
 );
 
