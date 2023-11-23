@@ -15,6 +15,33 @@ När du loggar in skapas det en JWT token av din info som kommer tillbaka till d
 
 ## Exempel
 
+### User - användare
+
+```
+POST /api/user/:email
+```
+Skapar användare i databasen. Behöver email från login, typ `session.user.email`. Ger tillbaka en JWT-token som ska sparas i localstorage och användas genom att skicka den som `header` i calls till API:et. För att skicka med den behövs det headern `jwt-token` med JWT-tokenen som värde. Det ser ut ungefär såhär:
+
+```js
+fetch("/api/...", {
+  ...
+  headers: {
+    "jwt-token": localStorage.getItem("jwt-token"),
+  },
+  ...
+})
+```
+
+#### OBS: ALLA ANROP NEDAN MÅSTE HA DENNA HEADER MED!
+
+***
+
+```
+DELETE /api/user
+```
+
+Tar bort användaren från databasen. 
+
 ### Dish - allmänna maträtter
 <!-- 
 Varje fetch/post meals ska ha headern 'jwt-token' med innehållet JWT och få ut måltider för den användarens id.
@@ -57,7 +84,7 @@ Utdata:
 ***
 
 ```
-Get /api/dish/:id
+GET /api/dish/:id
 ```
 För att få ut en specifik maträtt.
 
@@ -195,24 +222,10 @@ För att lägga till en måltid. Behöver data från body, specifikt tid, typ oc
 
 ***
 
+<!-- UPDATE? -->
+
 ```
 DELETE /api/meal/:id
 ```
 För att ta bort en måltid. Behöver id från måltiden som ska tas bort.
 
-### User - användare
-
-
-```
-POST /api/user/:email
-```
-Skapar användare i databasen. Behöver email från login, typ `session.user.email`.
-
-
-
-
-
-
-```
-
-```
