@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const jwt = require('jsonwebtoken');
 
 // getAll /api/dish
 module.exports.getAll = async (req, res) => {
@@ -8,6 +9,21 @@ module.exports.getAll = async (req, res) => {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
     const skip = req.query.page || 0;
+
+    let tokenInfo;
+    try {
+        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
+        if (verified) {
+            // Access Granted
+            tokenInfo = jwt.decode(req.headers['jwt-token']);
+        } else {
+            // Access Denied
+            return res.status(401).json({ message: 'error: bad token' });
+        }
+    } catch (err) {
+        console.log(err);
+        return res.status(401).json({ message: 'error: bad token' });
+    }
 
     const dishes = await prisma.dish.findMany({
         orderBy: {
@@ -25,6 +41,22 @@ module.exports.getOne = async (req, res) => {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
     const { id } = req.params;
+
+    let tokenInfo;
+    try {
+        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
+        if (verified) {
+            // Access Granted
+            tokenInfo = jwt.decode(req.headers['jwt-token']);
+        } else {
+            // Access Denied
+            return res.status(401).json({ message: 'error: bad token' });
+        }
+    } catch (err) {
+        console.log(err);
+        return res.status(401).json({ message: 'error: bad token' });
+    }
+
     const dish = await prisma.dish.findUnique({
         where: {
             id: parseInt(id)
@@ -40,6 +72,22 @@ module.exports.search = async (req, res) => {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
     const { name } = req.params;
+
+    let tokenInfo;
+    try {
+        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
+        if (verified) {
+            // Access Granted
+            tokenInfo = jwt.decode(req.headers['jwt-token']);
+        } else {
+            // Access Denied
+            return res.status(401).json({ message: 'error: bad token' });
+        }
+    } catch (err) {
+        console.log(err);
+        return res.status(401).json({ message: 'error: bad token' });
+    }
+
     const dish = await prisma.dish.findMany({
         where: {
             name: {
@@ -60,6 +108,22 @@ module.exports.create = async (req, res) => {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
     //const { name } = req.body;
+
+    let tokenInfo;
+    try {
+        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
+        if (verified) {
+            // Access Granted
+            tokenInfo = jwt.decode(req.headers['jwt-token']);
+        } else {
+            // Access Denied
+            return res.status(401).json({ message: 'error: bad token' });
+        }
+    } catch (err) {
+        console.log(err);
+        return res.status(401).json({ message: 'error: bad token' });
+    }
+
     const dish = await prisma.dish.create({
         data: {
             name: 'testBurgare11'
@@ -74,6 +138,22 @@ module.exports.delete = async (req, res) => {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
     const { id } = req.params;
+
+    let tokenInfo;
+    try {
+        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
+        if (verified) {
+            // Access Granted
+            tokenInfo = jwt.decode(req.headers['jwt-token']);
+        } else {
+            // Access Denied
+            return res.status(401).json({ message: 'error: bad token' });
+        }
+    } catch (err) {
+        console.log(err);
+        return res.status(401).json({ message: 'error: bad token' });
+    }
+
     const dish = await prisma.dish.delete({
         where: {
             id: parseInt(id)

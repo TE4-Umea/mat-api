@@ -2,24 +2,62 @@
 
 ## Styleguide
 * Commonjs
-* 2 mellanslags-indentering
+* 4 mellanslags-indentering
 * camelCase i kod
 * snake_case i filnamn
-* Semicolon efter varje rad
+* Semicolon efter varje kod-rad
 * Enkelfnuttar
 
 Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
 
+## JWT Token
+När du loggar in skapas det en JWT token av din info som kommer tillbaka till dig i frontenden och som du ska spara i localstorage. Den tokenen ska skickas med i headern på alla requests som görs till API:et. När du loggar ut ska du ta bort tokenen från localstorage.
+
 ## Exempel
+
+### User - användare
+
+```
+POST /api/user/:email
+```
+Skapar användare eller loggar in användaren. Behöver email från frontend-login, typ `session.user.email`. Ger tillbaka en JWT-token som ska sparas i localstorage och användas genom att skicka den som `header` i calls till API:et. För att skicka med den behövs det headern `jwt-token` med JWT-tokenen som värde. Det ser ut ungefär såhär:
+
+```js
+fetch("/api/...", {
+  ...
+  method: "POST" || "GET" || "DELETE" || "PUT", // use the correct one of these, default is GET
+  headers: {
+    "jwt-token": localStorage.getItem("jwt-token"),
+  },
+  ...
+})
+```
+
+#### OBS: ALLA ANROP NEDAN MÅSTE HA DENNA HEADER MED!
+
+***
+
+För att logga ut användaren så räcker det att du tar bort JWT-tokenen från localstorage.
+
+```js
+localStorage.removeItem("jwt-token");
+```
+
+***
+
+```
+DELETE /api/user
+```
+
+Tar bort användaren från databasen. 
 
 ### Dish - allmänna maträtter
 <!-- 
-TODO: alla kanske ska få auth/email från användaren. 
-Typ fetch/post meals med JWT och få ut måltider för den användarens id.
+Varje fetch/post meals ska ha headern 'jwt-token' med innehållet JWT och få ut måltider för den användarens id.
 Inte relevant för dishes för det mesta?
 
-Works maybe?
-fetch("/api/auth", {
+Works ish?
+fetch("/api/user", {
       method: "POST",
       headers: {
         "jwt-token": token,
@@ -55,7 +93,7 @@ Utdata:
 ***
 
 ```
-Get /api/dish/:id
+GET /api/dish/:id
 ```
 För att få ut en specifik maträtt.
 
@@ -96,11 +134,12 @@ För att lägga till en maträtt. Behöver data från body, specifikt bara namne
 
 ***
 
+<!-- TODO: Jag vet inte om jag vill att användare ska kunna to bort dishes hur som helst
 ```
 DELETE /api/dish/:id
 ```
 För att ta bort en maträtt. Behöver id från maträtten som ska tas bort.
-
+-->
 
 ### Meal - dina sparade måltider
 
@@ -193,24 +232,10 @@ För att lägga till en måltid. Behöver data från body, specifikt tid, typ oc
 
 ***
 
+<!-- UPDATE? -->
+
 ```
 DELETE /api/meal/:id
 ```
 För att ta bort en måltid. Behöver id från måltiden som ska tas bort.
 
-### User - användare
-
-
-```
-POST /api/user/:email
-```
-Skapar användare i databasen. Behöver email från login, typ `session.user.email`.
-
-
-
-
-
-
-```
-
-```
