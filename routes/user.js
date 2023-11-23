@@ -19,7 +19,7 @@ router.post('/:email',
 
 // login? /api/user/login, logs in a user
 
-// delete /api/user/:id, deletes user and all meals associated with them
+// delete /api/user/, deletes user and all meals associated with them
 router.delete('/',
     header('jwt-token').isJWT(),
     userController.delete

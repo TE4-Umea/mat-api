@@ -46,7 +46,7 @@ module.exports.create = async (req, res) => {
     res.status(200).send(token);
 };
 
-// delete /api/user/:id, deletes user and all meals associated with them
+// delete /api/user/, deletes user and all meals associated with them
 module.exports.delete = async (req, res) => {
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
