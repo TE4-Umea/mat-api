@@ -228,7 +228,8 @@ Tar 'name' och visar de senaste 10 måltiderna som innehåller det namnet. Bör 
 ```
 POST /api/meal
 ```
-För att lägga till en måltid. Behöver data från body, specifikt tid, typ och den valda maträttens id.
+För att lägga till en måltid. Behöver data från body, specifikt tid, typ och den valda maträttens id. Typ ska vara en av `frukost`, `lunch` eller `middag` och tid ska vara i formatet(?) `Date()`.
+<!-- TODO: date? -->
 
 ***
 

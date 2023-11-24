@@ -13,8 +13,7 @@ datasource db {
 model dish {
   id   Int    @id @default(autoincrement())
   name String @unique
-  //icon String? //not migrated yet, here or in meal?
-  //img  String? //not migrated yet, 'localhost:3000/api/img/...'
+  //img  String? //not migrated yet, 'http://localhost:3000/api/img/...', skriven som filnamnet
   meal meal[]
 }
 
@@ -27,7 +26,8 @@ model user {
 model meal {
   id     Int      @id @default(autoincrement())
   time   DateTime @default(now())
-  type   String   @default("middag")
+  type   String   @default("middag") //middag, lunch, frukost
+  // icon String? //not migrated yet
   userId Int
   user   user     @relation(fields: [userId], references: [id])
   dishId Int
