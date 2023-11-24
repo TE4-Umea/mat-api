@@ -14,6 +14,7 @@ model dish {
   id   Int    @id @default(autoincrement())
   name String @unique
   //img  String? //not migrated yet, 'http://localhost:3000/api/img/...', skriven som filnamnet
+  // description / recept ???
   meal meal[]
 }
 
@@ -33,3 +34,7 @@ model meal {
   dishId Int
   dish   dish     @relation(fields: [dishId], references: [id])
 }
+
+// category???
+// sparade / favoriter annan än meals???
+// timesEaten - problem för frontendarna
