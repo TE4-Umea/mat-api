@@ -41,7 +41,6 @@ module.exports.getAll = async (req, res) => {
     res.json(meals);
     //res.json({ meals: meals }); // TODO: Which do I use?
 };
-// ^^^^ fully works
 
 // Search /api/meal/search/:name
 module.exports.search = async (req, res) => {

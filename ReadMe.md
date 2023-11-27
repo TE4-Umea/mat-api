@@ -201,7 +201,7 @@ Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum
 ```
 GET /api/meal/search/:name
 ```
-Tar 'name' och visar de senaste 10 måltiderna som innehåller det namnet. Bör användas för att visa måltider när användaren söker igenom sina uppättna måltider. 
+Tar `name` och visar de senaste 10 måltiderna som innehåller det namnet. Bör användas för att visa måltider när användaren söker igenom sina uppättna måltider. 
 
 ```json
 [
@@ -235,7 +235,7 @@ Tar 'name' och visar de senaste 10 måltiderna som innehåller det namnet. Bör 
 ```
 POST /api/meal
 ```
-För att lägga till en måltid. Behöver data från body, specifikt tid, typ och den valda maträttens id. Typ ska vara en av `frukost`, `lunch` eller `middag` och tid ska vara i formatet(?) `Date()`.
+För att lägga till en måltid. Behöver data från body, specifikt `time`, `type` och den valda maträttens id (`dishId`). `type` ska vara en av `frukost`, `lunch` eller `middag` och `time` ska vara i formatet(?) `Date()`.
 <!-- TODO: date? -->
 
 ***
