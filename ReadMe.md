@@ -263,3 +263,15 @@ DELETE /api/meal/:id
 ```
 För att ta bort en måltid. Behöver id från måltiden som ska tas bort.
 
+
+### Saved - sparade maträtter
+
+```
+GET /api/saved || /api/saved?page=1
+```
+
+Får ut en sida maträtter (20? st) av alla sparade. Page börja på 0, så `/api/saved` och `/api/saved?page=0` är samma sak. Page=1 är alltså sida 2.
+
+```
+
+```
