@@ -9,4 +9,10 @@ router.get('/:name', async (req, res) => {
     return res.sendFile(name, { root: './public/images' });
 });
 
+router.get('/icons/:name', async (req, res) => {
+    // get image
+    const name = req.params.name;
+    return res.sendFile(name, { root: './public/images/icons' });
+});
+
 module.exports = router;
