@@ -33,6 +33,13 @@ fetch("/api/...", {
 })
 ```
 
+Och utdatat ser ut så här:
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzAxMDc0NDU3fQ.EhGsCJQY01751a08aVO_ZilF7EFfTCkIVEUbVilcSLU"
+}
+```
+
 #### OBS: ALLA ANROP NEDAN MÅSTE HA DENNA HEADER MED!
 
 ***

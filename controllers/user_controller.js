@@ -43,7 +43,7 @@ module.exports.create = async (req, res) => {
         token = jwt.sign(userExists, jwtSecretKey);
     }
 
-    res.status(200).send(token);
+    res.status(200).json({ token: token });
 };
 
 // delete /api/user/, deletes user and all meals associated with them
