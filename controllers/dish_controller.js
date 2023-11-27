@@ -29,7 +29,13 @@ module.exports.getAll = async (req, res) => {
         orderBy: {
             id: 'desc',
         },
-        // include: {},
+        include: {
+            categoryOnDish: {
+                include: {
+                    category: true
+                }
+            }
+        },
         take: 10,
         skip: 0 + (skip * 10),
     });
@@ -61,6 +67,13 @@ module.exports.getOne = async (req, res) => {
     const dish = await prisma.dish.findUnique({
         where: {
             id: parseInt(id)
+        },
+        include: {
+            categoryOnDish: {
+                include: {
+                    category: true
+                }
+            }
         },
         // should you get the times you have eaten this here?
     });
@@ -97,6 +110,13 @@ module.exports.search = async (req, res) => {
         },
         orderBy: {
             id: 'desc',
+        },
+        include: {
+            categoryOnDish: {
+                include: {
+                    category: true
+                }
+            }
         },
         take: 10,
     });
