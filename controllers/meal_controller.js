@@ -39,6 +39,7 @@ module.exports.getAll = async (req, res) => {
         skip: 0 + (skip * 10),
     });
     res.json(meals);
+    //res.json({ meals: meals }); // TODO: Which do I use?
 };
 // ^^^^ fully works
 
