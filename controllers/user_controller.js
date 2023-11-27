@@ -43,7 +43,7 @@ module.exports.create = async (req, res) => {
         token = jwt.sign(userExists, jwtSecretKey);
     }
 
-    res.status(200).send(token);
+    res.status(200).json({ token: token });
 };
 
 // delete /api/user/, deletes user and all meals associated with them
@@ -60,11 +60,11 @@ module.exports.delete = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ message: 'error: bad token' });
+            return res.status(401).json({ errors: 'error: bad token' });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ message: 'error: bad token' });
+        return res.status(401).json({ errors: 'error: bad token' });
     }
 
     const meal = await prisma.meal.deleteMany({
