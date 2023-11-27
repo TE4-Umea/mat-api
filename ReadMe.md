@@ -134,6 +134,14 @@ Utdata för '/api/dish/search/burgare'
 
 ***
 
+Du borde kunna använda bilder genom typ denna kod: 
+
+```html
+<img src={`http://${sida}/api/img/${img}`} />
+```
+
+***
+
 ```
 POST /api/dish
 ```
@@ -231,6 +239,14 @@ Tar `name` och visar de senaste 10 måltiderna som innehåller det namnet. Bör 
 ```
 
 *** 
+
+Du borde kunna använda ikoner genom typ denna kod: 
+
+```html
+<img src={`http://${sida}/api/img/${icon}`} />
+```
+
+***
 
 ```
 POST /api/meal

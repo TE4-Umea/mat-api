@@ -40,9 +40,6 @@ model meal {
   dish   dish     @relation(fields: [dishId], references: [id])
 }
 
-// category???
-// sparade
-// not migrated below
 model saved {
   id     Int  @id @default(autoincrement())
   userId Int
