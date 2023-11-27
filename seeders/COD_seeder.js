@@ -6,6 +6,7 @@ async function main() {
     await prisma.categoryOnDish.createMany({
         data: [
             { dishId: 1, categoryId: 4 },
+            { dishId: 1, categoryId: 1 },
             { dishId: 2, categoryId: 3 },
             { dishId: 3, categoryId: 3 },
             { dishId: 4, categoryId: 1 },

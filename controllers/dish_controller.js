@@ -29,6 +29,7 @@ module.exports.getAll = async (req, res) => {
         orderBy: {
             id: 'desc',
         },
+        // include: {},
         take: 10,
         skip: 0 + (skip * 10),
     });
