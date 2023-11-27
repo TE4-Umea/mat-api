@@ -107,7 +107,7 @@ module.exports.create = async (req, res) => {
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
-    //const { name } = req.body;
+    const { name } = req.body;
 
     let tokenInfo;
     try {
@@ -126,7 +126,7 @@ module.exports.create = async (req, res) => {
 
     const dish = await prisma.dish.create({
         data: {
-            name: 'testBurgare11'
+            name: name,
         }
     });
     res.json(dish);
