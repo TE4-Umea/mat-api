@@ -11,17 +11,22 @@ datasource db {
 }
 
 model dish {
-  id   Int     @id @default(autoincrement())
-  name String  @unique
-  img  String? // 'http://localhost:3000/api/img/...', skriven som filnamnet
-  desc String? // short description of the dish and how to cook it
-  meal meal[]
+  id             Int              @id @default(autoincrement())
+  name           String           @unique
+  img            String? // 'http://localhost:3000/api/img/...', skriven som filnamnet
+  desc           String? // short description of the dish and how to cook it
+  meal           meal[]
+  saved          saved[]
+  category       category?        @relation(fields: [categoryId], references: [id])
+  categoryId     Int?
+  categoryOnDish categoryOnDish[]
 }
 
 model user {
-  id    Int    @id @default(autoincrement())
-  email String @unique
+  id    Int     @id @default(autoincrement())
+  email String  @unique
   meal  meal[]
+  saved saved[]
 }
 
 model meal {
@@ -37,3 +42,26 @@ model meal {
 
 // category???
 // sparade
+// not migrated below
+model saved {
+  id     Int  @id @default(autoincrement())
+  userId Int
+  user   user @relation(fields: [userId], references: [id])
+  dishId Int
+  dish   dish @relation(fields: [dishId], references: [id])
+}
+
+model category {
+  id             Int              @id @default(autoincrement())
+  name           String           @unique
+  dish           dish[]
+  categoryOnDish categoryOnDish[]
+}
+
+model categoryOnDish {
+  id         Int      @id @default(autoincrement())
+  categoryId Int
+  category   category @relation(fields: [categoryId], references: [id])
+  dishId     Int
+  dish       dish     @relation(fields: [dishId], references: [id])
+}
