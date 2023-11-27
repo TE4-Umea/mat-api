@@ -60,11 +60,11 @@ module.exports.delete = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ message: 'error: bad token' });
+            return res.status(401).json({ errors: 'error: bad token' });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ message: 'error: bad token' });
+        return res.status(401).json({ errors: 'error: bad token' });
     }
 
     const meal = await prisma.meal.deleteMany({

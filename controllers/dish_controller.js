@@ -18,11 +18,11 @@ module.exports.getAll = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ message: 'error: bad token' });
+            return res.status(401).json({ errors: 'error: bad token' });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ message: 'error: bad token' });
+        return res.status(401).json({ errors: 'error: bad token' });
     }
 
     const dishes = await prisma.dish.findMany({
@@ -50,11 +50,11 @@ module.exports.getOne = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ message: 'error: bad token' });
+            return res.status(401).json({ errors: 'error: bad token' });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ message: 'error: bad token' });
+        return res.status(401).json({ errors: 'error: bad token' });
     }
 
     const dish = await prisma.dish.findUnique({
@@ -81,11 +81,11 @@ module.exports.search = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ message: 'error: bad token' });
+            return res.status(401).json({ errors: 'error: bad token' });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ message: 'error: bad token' });
+        return res.status(401).json({ errors: 'error: bad token' });
     }
 
     const dish = await prisma.dish.findMany({
@@ -117,11 +117,11 @@ module.exports.create = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ message: 'error: bad token' });
+            return res.status(401).json({ errors: 'error: bad token' });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ message: 'error: bad token' });
+        return res.status(401).json({ errors: 'error: bad token' });
     }
 
     const dish = await prisma.dish.create({
@@ -147,11 +147,11 @@ module.exports.delete = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ message: 'error: bad token' });
+            return res.status(401).json({ errors: 'error: bad token' });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ message: 'error: bad token' });
+        return res.status(401).json({ errors: 'error: bad token' });
     }
 
     const dish = await prisma.dish.delete({
