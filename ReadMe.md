@@ -272,10 +272,37 @@ GET /api/saved || /api/saved?page=1
 
 Får ut en sida maträtter (20? st) av alla sparade. Page börja på 0, så `/api/saved` och `/api/saved?page=0` är samma sak. Page=1 är alltså sida 2.
 
-```
+```json
 
 ```
 
+***
+
+```
+GET /api/saved/search/:name
+```
+Tar `name` och visar de senaste 10 sparade maträtter som innehåller det namnet. Bör användas för att visa sparade maträtter när användaren söker igenom sina sparade maträtter. 
+
+```json
+
+```
+
+***
+
+```
+POST /api/saved
+```
+För att lägga till en sparad maträtt. Behöver data från body, specifikt bara `dishId`.
+
+***
+
+```
+DELETE /api/saved/:id
+```
+För att ta bort en sparad maträtt. Behöver id från maträtten som ska tas bort.
+
+
+<!-- TODO: category? -->
 
 
 <!-- TODO: error? -->
