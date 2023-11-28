@@ -154,6 +154,7 @@ module.exports.create = async (req, res) => {
         return res.status(400).json({ errors: 'dish already exists' });
     }
 
+    // TODO: add categoryOnDish, but how?
     const dish = await prisma.dish.create({
         data: {
             name: name,
