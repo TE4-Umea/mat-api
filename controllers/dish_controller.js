@@ -145,9 +145,30 @@ module.exports.create = async (req, res) => {
         return res.status(401).json({ errors: 'error: bad token' });
     }
 
+    const existingDish = await prisma.dish.findUnique({
+        where: {
+            name: name
+        }
+    });
+    if (existingDish !== null) {
+        return res.status(400).json({ errors: 'dish already exists' });
+    }
+
     const dish = await prisma.dish.create({
         data: {
             name: name,
+            // desc: req.body.desc,
+            // categoryOnDish: {
+            //     create: [
+            //         {
+            //             category: {
+            //                 connect: {
+            //                     id: req.body.categoryId
+            //                 }
+            //             }
+            //         }
+            //     ]
+            // }
         }
     });
     res.json(dish);
