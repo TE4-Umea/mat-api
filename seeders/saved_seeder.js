@@ -7,7 +7,7 @@ async function main() {
     await prisma.saved.createMany({
         data: [
             { dishId: 1, userId: user },
-            { dishId: 2, userId: user },
+            { dishId: 11, userId: user },
             { dishId: 3, userId: user },
             { dishId: 4, userId: user },
             { dishId: 5, userId: user },
