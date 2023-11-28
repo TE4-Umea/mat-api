@@ -125,6 +125,7 @@ module.exports.search = async (req, res) => {
 
 // Create /api/dish
 module.exports.create = async (req, res) => {
+    console.log(req.body);
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
     }

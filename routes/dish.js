@@ -31,7 +31,7 @@ router.get(
 
 // Create /api/dish, creates a new dish that everyone can use
 router.post('/',
-    //body('name').isString().escape(),
+    body('name').isString().escape(),
     header('jwt-token').isJWT(),
     dishController.create
 );
