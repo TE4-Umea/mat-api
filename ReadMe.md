@@ -446,9 +446,9 @@ Felmeddelanden kommer ut i denna form:
 {
   "errors": [
     {
-      "type": "field",
-      "msg": "Invalid value",
-      "path": "jwt-token",
+      "type": "field",  // den här är oftast med
+      "msg": "Invalid value", // den här är alltid med
+      "path": "jwt-token", // ibland är path och location med, ibland inte
       "location": "headers"
     }
   ]
