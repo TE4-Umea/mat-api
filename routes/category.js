@@ -20,3 +20,4 @@ router.get('/:id',
     categoryController.getOne
 );
 
+module.exports = router;
