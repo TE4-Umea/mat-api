@@ -70,15 +70,40 @@ Utdata:
 [
   {
     "id": 7,
-    "name": "Cheeseburgare"
+    "name": "Cheeseburgare",
+    "img": "kottbullar_potatismos.jpg",
+    "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+    "categoryOnDish": [
+      {
+        "category": {
+          "id": 1,
+          "name": "Kött"
+        },
+        "category": {
+          "id": 2,
+          "name": "vegetariskt"
+        }
+      }
+    ]
   },
   {
     "id": 6,
-    "name": "Hamburgare"
+    "name": "Hamburgare",
+    "img": null,
+    "desc": null,
+    "categoryOnDish": {
+      "category": {
+        "id": 2,
+        "name": "vegetariskt"
+      }
+    }
   },
   {
     "id": 3,
-    "name": "Korv med potatismos"
+    "name": "Korv med potatismos",
+    "img": "korv_potatismos.jpg",
+    "desc": "Koka potatis och gör mos. Stek korven. Servera.",
+    "categoryOnDish": null
   },
   ...
 ]
@@ -94,7 +119,15 @@ För att få ut en specifik maträtt.
 ```json
 {
   "id": 7,
-  "name": "Cheeseburgare"
+  "name": "Cheeseburgare",
+  "img": "cheeseburgare.jpg",
+  "desc": null,
+  "categoryOnDish": {
+      "category": {
+        "id": 2,
+        "name": "vegetariskt"
+      }
+    }
 }
 ```
 
@@ -110,11 +143,27 @@ Utdata för '/api/dish/search/burgare'
 [
   {
     "id": 7,
-    "name": "Cheeseburgare"
+    "name": "Cheeseburgare",
+    "img": "cheeseburgare.jpg",
+    "desc": null,
+    "categoryOnDish": {
+      "category": {
+        "id": 2,
+        "name": "vegetariskt"
+      }
+    }
   },
   {
       "id": 6,
-      "name": "Hamburgare"
+      "name": "Hamburgare",
+      "img": null,
+      "desc": "stek hamburgare",
+      "categoryOnDish": {
+        "category": {
+          "id": 2,
+          "name": "vegetariskt"
+        }
+      }
   }
 ]
 ```
@@ -159,6 +208,7 @@ Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum
     "id": 5,
     "time": "2023-11-14T11:56:24.198Z",
     "type": "lunch",
+    "icon": "img.png",
     "userId": 2,
     "dishId": 1,
     "dish": {
@@ -170,6 +220,7 @@ Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum
     "id": 4,
     "time": "2023-11-14T11:44:54.789Z",
     "type": "lunch",
+    "icon": "img.png",
     "userId": 1,
     "dishId": 5,
     "dish": {
@@ -181,6 +232,7 @@ Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum
     "id": 3,
     "time": "2023-11-14T11:44:22.356Z",
     "type": "breakfast",
+    "icon": null,
     "userId": 1,
     "dishId": 3,
     "dish": {
@@ -204,6 +256,7 @@ Tar `name` och visar de senaste 10 måltiderna som innehåller det namnet. Bör 
     "id": 4,
     "time": "2023-11-14T11:44:54.789Z",
     "type": "lunch",
+    "icon": "symbol.png",
     "userId": 1,
     "dishId": 5,
     "dish": {
@@ -215,6 +268,7 @@ Tar `name` och visar de senaste 10 måltiderna som innehåller det namnet. Bör 
     "id": 1,
     "time": "2023-11-14T11:43:00.092Z",
     "type": "middag",
+    "icon": null,
     "userId": 1,
     "dishId": 1,
     "dish": {
@@ -329,10 +383,12 @@ Får ut en specifik kategori och dess maträtter.
 {
   "id": 1,
   "name": "Kött",
-  "categoriesOnDish": {
+  "categoryOnDish": {
     "dish": {
       "id": 1,
-      "name": "Köttbullar med potatismos"
+      "name": "Köttbullar med potatismos",
+      "img": "kottbullar_potatismos.jpg",
+      "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
     },
   }
 }
