@@ -189,7 +189,7 @@ För att lägga till en maträtt. Behöver data från body, specifikt bara namne
 ```
 DELETE /api/dish/:id
 ```
-För att ta bort en maträtt. Behöver id från maträtten som ska tas bort.
+För att ta bort en maträtt. Behöver id från maträtten som ska tas bort. 
 -->
 
 ### Meal - dina sparade måltider
