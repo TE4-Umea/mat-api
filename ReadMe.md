@@ -439,5 +439,20 @@ Får ut en specifik kategori och dess maträtter.
 }
 ```
 
+### Error - felmeddelanden
+Felmeddelanden kommer ut i denna form: 
+
+```json
+{
+  "errors": [
+    {
+      "type": "field",
+      "msg": "Invalid value",
+      "path": "jwt-token",
+      "location": "headers"
+    }
+  ]
+}
+```
 
 <!-- TODO: error? -->
