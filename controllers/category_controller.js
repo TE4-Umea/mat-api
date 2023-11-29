@@ -17,11 +17,11 @@ module.exports.getAll = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: [{ "msg": "Improper token" }] });
+            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: [{ "type": err.name, "msg": err.message }] });
+        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
     }
 
     const categories = await prisma.category.findMany({
@@ -54,11 +54,11 @@ module.exports.getOne = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: [{ "msg": "Improper token" }] });
+            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: [{ "type": err.name, "msg": err.message }] });
+        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
     }
 
     const category = await prisma.category.findUnique({
