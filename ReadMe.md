@@ -314,7 +314,42 @@ GET /api/saved || /api/saved?page=1
 Får ut en sida maträtter (20? st) av alla sparade. Page börja på 0, så `/api/saved` och `/api/saved?page=0` är samma sak. Page=1 är alltså sida 2.
 
 ```json
-
+[
+  {
+    "id": 5,
+    "userId": 1,
+    "dishId": 1,
+    "dish": {
+      "id": 1,
+      "name": "Köttbullar med potatismos",
+      "img": "kottbullar_potatismos.jpg",
+      "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+      "categoryOnDish": ?
+    }
+  },
+  {
+    "id": 4,
+    "userId": 1,
+    "dishId": 5,
+    "dish": {
+      "id": 5,
+      "name": "Köttbullar och makaroner",
+      "img": "kottbullar_potatismos.jpg",
+      "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+    }
+  },
+  {
+    "id": 3,
+    "userId": 1,
+    "dishId": 3,
+    "dish": {
+      "id": 3,
+      "name": "Korv med potatismos",
+      "img": null,
+      "desc": null,
+    }
+  }
+]
 ```
 
 ***
@@ -325,7 +360,17 @@ GET /api/saved/search/:name
 Tar `name` och visar de senaste 10 sparade maträtter som innehåller det namnet. Bör användas för att visa sparade maträtter när användaren söker igenom sina sparade maträtter. 
 
 ```json
-
+{
+  "id": 5,
+  "userId": 1,
+  "dishId": 1,
+  "dish": {
+    "id": 1,
+    "name": "Köttbullar med potatismos",
+    "img": "kottbullar_potatismos.jpg",
+    "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+  }
+}
 ```
 
 ***
