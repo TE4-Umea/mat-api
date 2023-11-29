@@ -36,7 +36,7 @@ fetch("/api/...", {
 Och utdatat ser ut så här:
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzAxMDc0NDU3fQ.EhGsCJQY01751a08aVO_ZilF7EFfTCkIVEUbVilcSLU"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzAxMDc0NDU3fQ.EhGsCJQY01751a08aVO_ZilF7EFfTCkIVEUbVilcSLU_test_inte_riktig_token",
 }
 ```
 
@@ -59,19 +59,6 @@ DELETE /api/user
 Tar bort användaren från databasen. 
 
 ### Dish - allmänna maträtter
-<!-- 
-Varje fetch/post meals ska ha headern 'jwt-token' med innehållet JWT och få ut måltider för den användarens id.
-Inte relevant för dishes för det mesta?
-
-Works ish?
-fetch("/api/user", {
-      method: "POST",
-      headers: {
-        "jwt-token": token,
-      },
-      body: JSON.stringify({ username, password }),
-    })
--->
 
 ```
 GET /api/dish || /api/dish?page=1
@@ -302,7 +289,54 @@ DELETE /api/saved/:id
 För att ta bort en sparad maträtt. Behöver id från maträtten som ska tas bort.
 
 
-<!-- TODO: category? -->
+### Category - kategorier
+<!-- TODO: fyll i exempel bättre? -->
+
+```
+GET /api/category
+```
+Får ut alla kategorier som finns i databasen.
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Kött"
+  },
+  {
+    "id": 2,
+    "name": "Fisk"
+  },
+  {
+    "id": 3,
+    "name": "Vegetariskt"
+  },
+  {
+    "id": 4,
+    "name": "Veganskt"
+  }
+]
+```
+
+***
+
+```
+GET /api/category/:id
+```
+Får ut en specifik kategori och dess maträtter.
+
+```json
+{
+  "id": 1,
+  "name": "Kött",
+  "categoriesOnDish": {
+    "dish": {
+      "id": 1,
+      "name": "Köttbullar med potatismos"
+    },
+  }
+}
+```
 
 
 <!-- TODO: error? -->
