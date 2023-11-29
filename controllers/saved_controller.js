@@ -18,11 +18,11 @@ module.exports.getAll = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: 'error: bad token' });
+            return res.status(401).json({ errors: [{ "msg": "Improper token" }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: 'error: bad token' });
+        return res.status(401).json({ errors: [{ "type": err.name, "msg": err.message }] });
     }
 
     const saveds = await prisma.saved.findMany({
@@ -58,11 +58,11 @@ module.exports.search = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: 'error: bad token' });
+            return res.status(401).json({ errors: [{ "msg": "Improper token" }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: 'error: bad token' });
+        return res.status(401).json({ errors: [{ "type": err.name, "msg": err.message }] });
     }
 
     // sorted by user
@@ -105,11 +105,11 @@ module.exports.create = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: 'error: bad token' });
+            return res.status(401).json({ errors: [{ "msg": "Improper token" }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: 'error: bad token' });
+        return res.status(401).json({ errors: [{ "type": err.name, "msg": err.message }] });
     }
 
     const exists = await prisma.saved.findUnique({
@@ -125,7 +125,7 @@ module.exports.create = async (req, res) => {
         }
     });
     if (exists !== null) {
-        return res.status(400).json({ errors: 'error: already saved' });
+        return res.status(400).json({ errors: [{ "msg": "Already in users saved" }] });
     }
 
     const saved = await prisma.saved.create({
@@ -149,11 +149,11 @@ module.exports.delete = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: 'error: bad token' });
+            return res.status(401).json({ errors: [{ "msg": "Improper token" }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: 'error: bad token' });
+        return res.status(401).json({ errors: [{ "type": err.name, "msg": err.message }] });
     }
 
     // TODO: change
