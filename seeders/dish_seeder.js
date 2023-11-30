@@ -20,6 +20,7 @@ async function main() {
     await prisma.dish.createMany({
         data: [
             { name: 'Hamburgare', img: 'hamburgare.jpg', desc: 'Stek hamburgare. Servera med bröd och ketchup. ' },
+            { name: 'Kycklingburgare', img: 'kycklingburgare.jpg', desc: 'Stek kycklingburgare. Servera med bröd och ketchup. ' },
             { name: 'Cheeseburgare', img: 'cheeseburgare.jpg', desc: 'Stek hamburgare. Servera med bröd, ost och ketchup. ' },
             { name: 'Kebab', img: 'kebab.jpg', desc: 'Stek kebab. Servera med typ pommes och någon salad. ' },
             { name: 'Korv med bröd', img: 'korv_brod.jpg', desc: 'Stek korv. Servera med bröd och ketchup. ' },
@@ -32,9 +33,13 @@ async function main() {
             { name: 'Makaronigryta', img: 'makaronigryta.JPG', desc: 'Koka makaroner. Stek köttfärs.  Blanda makaroner med köttfärsen. Servera. ' },
             { name: 'Köttfärssås med spaghetti', img: 'spaghetti_kottfarssas.jpg', desc: 'Koka spaghetti. Stek köttfärs. Blanda köttfärsen med krossade tomater. Servera. ' },
             { name: 'Skinksås med pasta', img: 'skinksas.jpg', desc: 'Koka pasta. Gör skinksås. Blanda skinkan med krossade tomater. Servera. ' },
+
+            { name: 'Fiskpinnar', img: 'fiskpinnar.jpg', desc: 'Stek fiskpinnar. Potatis rekommenderas till sidan. Servera. ' },
+            { name: 'Kokt lax med potatis', img: 'lax_potatis.jpg', desc: 'Koka lax samt potatis. Servera. ' },
+            { name: 'Kokt torsk med potatis', img: 'torsk_potatis.jpg', desc: 'Koka torsk samt potatis. Servera. ' },
             
             { name: 'Pannkakor', img: 'pannkakor.jpg', desc: 'Stek pannkakor. Servera med sylt och grädde. ' },
-            
+
             { name: 'Tomatsoppa', img: 'tomatsoppa.jpg', desc: 'Koka tomatsoppa. Servera. ' },
             { name: 'Morotssoppa', img: 'morotssoppa.jpg', desc: 'Koka morotssoppa. Servera. ' },
             { name: 'Sallad', img: 'sallad.jpg', desc: 'Gör sallad. Servera. ' },

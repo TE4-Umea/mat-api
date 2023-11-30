@@ -157,6 +157,8 @@ module.exports.update = async (req, res) => {
     res.json(meal);
 };
 
+// Update icon?
+
 // delete /api/meal/:id
 module.exports.delete = async (req, res) => {
     const { id } = req.params;
