@@ -27,7 +27,7 @@ module.exports.getAll = async (req, res) => {
 
     const dishes = await prisma.dish.findMany({
         orderBy: {
-            id: 'desc',
+            id: 'asc',
         },
         include: {
             categoryOnDish: {
@@ -75,7 +75,6 @@ module.exports.getOne = async (req, res) => {
                 }
             }
         },
-        // should you get the times you have eaten this here?
     });
     res.json(dish);
 };
@@ -109,7 +108,7 @@ module.exports.search = async (req, res) => {
             }
         },
         orderBy: {
-            id: 'desc',
+            id: 'asc',
         },
         include: {
             categoryOnDish: {
@@ -125,7 +124,7 @@ module.exports.search = async (req, res) => {
 
 // Create /api/dish
 module.exports.create = async (req, res) => {
-    console.log(req.body);
+    console.log(req.query);
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
