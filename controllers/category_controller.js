@@ -29,7 +29,7 @@ module.exports.getAll = async (req, res) => {
             id: 'desc',
         },
         include: {
-            dishOnCategory: {
+            categoryOnDish: {
                 include: {
                     dish: true
                 }
@@ -66,7 +66,7 @@ module.exports.getOne = async (req, res) => {
             id: parseInt(id),
         },
         include: {
-            dishOnCategory: {
+            categoryOnDish: {
                 include: {
                     dish: true
                 }
