@@ -53,10 +53,11 @@ model category {
 }
 
 model categoryOnDish {
+  id         Int      @id @default(autoincrement()) // not migrated
   categoryId Int
   category   category @relation(fields: [categoryId], references: [id])
   dishId     Int
   dish       dish     @relation(fields: [dishId], references: [id])
 
-  @@id([dishId, categoryId])
+  // @@id([dishId, categoryId])
 }
