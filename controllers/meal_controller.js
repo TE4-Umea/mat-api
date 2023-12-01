@@ -86,7 +86,7 @@ module.exports.search = async (req, res) => {
             dish: true
         },
         orderBy: {
-            id: 'desc',
+            time: 'desc',
         },
         take: 10
     });
@@ -117,16 +117,17 @@ module.exports.create = async (req, res) => {
             userId: tokenInfo.id,           // userId from token
             dishId: parseInt(dishId),       // dishId from hidden(?) in body
             type: type,                     // frukost, lunch, middag, 
-            //time: Date() from dropdown    // time from dropdown
+            time: time                      // time from dropdown
         }
     });
     res.json(meal);     // TODO: do I need to return anything?
 };
 
 // Update /api/meal/:id, updates a meal that a user has eaten
+// not to be used right now, kinda
 module.exports.update = async (req, res) => {
     const { id } = req.params;
-    const { dishId, type, time } = req.body;
+    const { dishId, type, time, icon } = req.body;
 
     let tokenInfo;
     try {
@@ -150,14 +151,13 @@ module.exports.update = async (req, res) => {
         data: {
             userId: tokenInfo.id,
             dishId: parseInt(dishId),
-            type: type
-            //time: Date() from dropdown?
+            type: type,
+            icon: icon,
+            time: time
         }
     });
     res.json(meal);
 };
-
-// Update icon?
 
 // delete /api/meal/:id
 module.exports.delete = async (req, res) => {
