@@ -324,7 +324,6 @@ Får ut en sida maträtter (20? st) av alla sparade. Page börja på 0, så `/ap
       "name": "Köttbullar med potatismos",
       "img": "kottbullar_potatismos.jpg",
       "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
-      "categoryOnDish": ?
     }
   },
   {
@@ -388,7 +387,7 @@ DELETE /api/saved/:id
 För att ta bort en sparad maträtt. Behöver id från maträtten som ska tas bort.
 
 
-### Category - kategorier
+### Category - kategorier 
 <!-- TODO: fyll i exempel bättre? -->
 
 ```
