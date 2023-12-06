@@ -35,8 +35,8 @@ module.exports.getAll = async (req, res) => {
         orderBy: {
             time: 'desc',
         },
-        take: 10,
-        skip: 0 + (skip * 10),
+        take: 20,
+        skip: 0 + (skip * 20),
     });
     res.json(meals);
     //res.json({ meals: meals }); // TODO: Which do I use?
