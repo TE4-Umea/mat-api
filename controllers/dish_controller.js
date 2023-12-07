@@ -34,6 +34,11 @@ module.exports.getAll = async (req, res) => {
                 include: {
                     category: true
                 }
+            },
+            saved: {
+                where: {
+                    userId: tokenInfo.id
+                }
             }
         },
         take: 20,
@@ -72,6 +77,11 @@ module.exports.getOne = async (req, res) => {
             categoryOnDish: {
                 include: {
                     category: true
+                }
+            },
+            saved: {
+                where: {
+                    userId: tokenInfo.id
                 }
             }
         },
@@ -114,6 +124,11 @@ module.exports.search = async (req, res) => {
             categoryOnDish: {
                 include: {
                     category: true
+                }
+            },
+            saved: {
+                where: {
+                    userId: tokenInfo.id
                 }
             }
         },
