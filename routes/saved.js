@@ -23,7 +23,7 @@ router.get(
 
 // Create /api/saved, creates a new saved dish
 router.post('/',
-    body('dishId').isInt(),
+    query('dishId').isInt(),
     header('jwt-token').isJWT(),
     savedController.create
 );
