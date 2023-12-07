@@ -95,7 +95,7 @@ module.exports.search = async (req, res) => {
 
 // Create /api/meal, creates a new meal that a user has eaten
 module.exports.create = async (req, res) => {
-    const { dishId, type, time } = req.body;
+    const { dishId, type, time } = req.query;
 
     let tokenInfo;
     try {
