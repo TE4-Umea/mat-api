@@ -23,9 +23,9 @@ router.get(
 
 // Create /api/meal, creates a new meal that a user has eaten
 router.post('/',
-    body('dishId').isInt(),
-    body('time').isISO8601(), // not sure if this is right
-    body('type').isString().escape(),
+    query('dishId').isInt(),
+    query('time').isISO8601(), // not sure if this is right
+    query('type').isString().escape(),
     header('jwt-token').isJWT(),
     mealController.create
 );

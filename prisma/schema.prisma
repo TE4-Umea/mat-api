@@ -11,30 +11,53 @@ datasource db {
 }
 
 model dish {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  //img  String? //not migrated yet, 'http://localhost:3000/api/img/...', skriven som filnamnet
-  // description / recept ???
-  meal meal[]
+  id             Int              @id @default(autoincrement())
+  name           String           @unique
+  img            String? // 'http://localhost:3000/api/img/...', skriven som filnamnet
+  desc           String? // short description of the dish and how to cook it
+  meal           meal[]
+  saved          saved[]
+  categoryOnDish categoryOnDish[]
 }
 
 model user {
-  id    Int    @id @default(autoincrement())
-  email String @unique
+  id    Int     @id @default(autoincrement())
+  email String  @unique
   meal  meal[]
+  saved saved[]
 }
 
 model meal {
   id     Int      @id @default(autoincrement())
   time   DateTime @default(now())
-  type   String   @default("middag") //middag, lunch, frukost
-  // icon String? //not migrated yet
+  type   String   @default("middag") // middag, lunch, frukost
+  icon   String? // icon that the user sets
   userId Int
   user   user     @relation(fields: [userId], references: [id])
   dishId Int
   dish   dish     @relation(fields: [dishId], references: [id])
 }
 
-// category???
-// sparade / favoriter annan än meals???
-// timesEaten - problem för frontendarna
+model saved {
+  id     Int  @id @default(autoincrement())
+  userId Int
+  user   user @relation(fields: [userId], references: [id])
+  dishId Int
+  dish   dish @relation(fields: [dishId], references: [id])
+}
+
+model category {
+  id             Int              @id @default(autoincrement())
+  name           String           @unique
+  categoryOnDish categoryOnDish[]
+}
+
+model categoryOnDish {
+  id         Int      @id @default(autoincrement()) // not migrated
+  categoryId Int
+  category   category @relation(fields: [categoryId], references: [id])
+  dishId     Int
+  dish       dish     @relation(fields: [dishId], references: [id])
+
+  // @@id([dishId, categoryId])
+}

@@ -3,9 +3,15 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-    await prisma.user.createMany({
+    const user = 14;
+    await prisma.saved.createMany({
         data: [
-            { email: 'test@test.com' },
+            { dishId: 1, userId: user },
+            { dishId: 11, userId: user },
+            { dishId: 3, userId: user },
+            { dishId: 4, userId: user },
+            { dishId: 5, userId: user },
+            { dishId: 6, userId: user },
         ],
     });
 }

@@ -3,9 +3,13 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-    await prisma.user.createMany({
+    await prisma.category.createMany({
         data: [
-            { email: 'test@test.com' },
+            { name: 'Vegetariansk' },
+            { name: 'Vegansk' },
+            { name: 'Kött' },
+            { name: 'Fisk' },
+            { name: 'Kyckling' }
         ],
     });
 }

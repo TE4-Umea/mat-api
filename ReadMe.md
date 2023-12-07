@@ -36,7 +36,7 @@ fetch("/api/...", {
 Och utdatat ser ut så här:
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzAxMDc0NDU3fQ.EhGsCJQY01751a08aVO_ZilF7EFfTCkIVEUbVilcSLU"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzAxMDc0NDU3fQ.EhGsCJQY01751a08aVO_ZilF7EFfTCkIVEUbVilcSLU_test_inte_riktig_token",
 }
 ```
 
@@ -59,19 +59,6 @@ DELETE /api/user
 Tar bort användaren från databasen. 
 
 ### Dish - allmänna maträtter
-<!-- 
-Varje fetch/post meals ska ha headern 'jwt-token' med innehållet JWT och få ut måltider för den användarens id.
-Inte relevant för dishes för det mesta?
-
-Works ish?
-fetch("/api/user", {
-      method: "POST",
-      headers: {
-        "jwt-token": token,
-      },
-      body: JSON.stringify({ username, password }),
-    })
--->
 
 ```
 GET /api/dish || /api/dish?page=1
@@ -83,15 +70,40 @@ Utdata:
 [
   {
     "id": 7,
-    "name": "Cheeseburgare"
+    "name": "Cheeseburgare",
+    "img": "kottbullar_potatismos.jpg",
+    "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+    "categoryOnDish": [
+      {
+        "category": {
+          "id": 1,
+          "name": "Kött"
+        },
+        "category": {
+          "id": 2,
+          "name": "vegetariskt"
+        }
+      }
+    ]
   },
   {
     "id": 6,
-    "name": "Hamburgare"
+    "name": "Hamburgare",
+    "img": null,
+    "desc": null,
+    "categoryOnDish": {
+      "category": {
+        "id": 2,
+        "name": "vegetariskt"
+      }
+    }
   },
   {
     "id": 3,
-    "name": "Korv med potatismos"
+    "name": "Korv med potatismos",
+    "img": "korv_potatismos.jpg",
+    "desc": "Koka potatis och gör mos. Stek korven. Servera.",
+    "categoryOnDish": null
   },
   ...
 ]
@@ -107,7 +119,15 @@ För att få ut en specifik maträtt.
 ```json
 {
   "id": 7,
-  "name": "Cheeseburgare"
+  "name": "Cheeseburgare",
+  "img": "cheeseburgare.jpg",
+  "desc": null,
+  "categoryOnDish": {
+      "category": {
+        "id": 2,
+        "name": "vegetariskt"
+      }
+    }
 }
 ```
 
@@ -123,21 +143,45 @@ Utdata för '/api/dish/search/burgare'
 [
   {
     "id": 7,
-    "name": "Cheeseburgare"
+    "name": "Cheeseburgare",
+    "img": "cheeseburgare.jpg",
+    "desc": null,
+    "categoryOnDish": {
+      "category": {
+        "id": 2,
+        "name": "vegetariskt"
+      }
+    }
   },
   {
       "id": 6,
-      "name": "Hamburgare"
+      "name": "Hamburgare",
+      "img": null,
+      "desc": "stek hamburgare",
+      "categoryOnDish": {
+        "category": {
+          "id": 2,
+          "name": "vegetariskt"
+        }
+      }
   }
 ]
 ```
 
 ***
 
+Du borde kunna använda bilder genom typ denna kod: 
+
+```html
+<img src={`http://${sida}/api/img/${img}`} />
 ```
-POST /api/dish
+
+***
+
 ```
-För att lägga till en maträtt. Behöver data från body, specifikt bara namnet. 
+POST /api/dish?name=
+```
+För att lägga till en maträtt. Behöver namn data från query. 
 
 ***
 
@@ -145,7 +189,7 @@ För att lägga till en maträtt. Behöver data från body, specifikt bara namne
 ```
 DELETE /api/dish/:id
 ```
-För att ta bort en maträtt. Behöver id från maträtten som ska tas bort.
+För att ta bort en maträtt. Behöver id från maträtten som ska tas bort. 
 -->
 
 ### Meal - dina sparade måltider
@@ -164,6 +208,7 @@ Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum
     "id": 5,
     "time": "2023-11-14T11:56:24.198Z",
     "type": "lunch",
+    "icon": "img.png",
     "userId": 2,
     "dishId": 1,
     "dish": {
@@ -175,6 +220,7 @@ Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum
     "id": 4,
     "time": "2023-11-14T11:44:54.789Z",
     "type": "lunch",
+    "icon": "img.png",
     "userId": 1,
     "dishId": 5,
     "dish": {
@@ -186,6 +232,7 @@ Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum
     "id": 3,
     "time": "2023-11-14T11:44:22.356Z",
     "type": "breakfast",
+    "icon": null,
     "userId": 1,
     "dishId": 3,
     "dish": {
@@ -209,6 +256,7 @@ Tar `name` och visar de senaste 10 måltiderna som innehåller det namnet. Bör 
     "id": 4,
     "time": "2023-11-14T11:44:54.789Z",
     "type": "lunch",
+    "icon": "symbol.png",
     "userId": 1,
     "dishId": 5,
     "dish": {
@@ -220,6 +268,7 @@ Tar `name` och visar de senaste 10 måltiderna som innehåller det namnet. Bör 
     "id": 1,
     "time": "2023-11-14T11:43:00.092Z",
     "type": "middag",
+    "icon": null,
     "userId": 1,
     "dishId": 1,
     "dish": {
@@ -232,11 +281,24 @@ Tar `name` och visar de senaste 10 måltiderna som innehåller det namnet. Bör 
 
 *** 
 
+Du borde kunna använda ikoner genom typ denna kod: 
+
+```html
+<img src={`http://${sida}/api/img/${icon}`} />
 ```
-POST /api/meal
+
+***
+
 ```
-För att lägga till en måltid. Behöver data från body, specifikt `time`, `type` och den valda maträttens id (`dishId`). `type` ska vara en av `frukost`, `lunch` eller `middag` och `time` ska vara i formatet(?) `Date()`.
+POST /api/meal?dishId=${dishId}&type=${type}&time=${time}
+```
+För att lägga till en måltid. Behöver data från query, specifikt `time`, `type` och den valda maträttens id (`dishId`). `type` ska vara en av `lunch` eller `middag` och `time` ska vara i formatet(?) `Date()`, alltså se ut på detta sätt `new Date("2023-12-06T16:11:52.942Z")`.
 <!-- TODO: date? -->
+
+Enklaste sättet att få ut datumet för morgondagen vad jag har hittat är såhär:
+```js
+new Date(new Date().setDate(new Date().getDate() + 1))
+```
 
 ***
 
@@ -247,3 +309,154 @@ DELETE /api/meal/:id
 ```
 För att ta bort en måltid. Behöver id från måltiden som ska tas bort.
 
+
+### Saved - sparade maträtter
+
+```
+GET /api/saved || /api/saved?page=1
+```
+
+Får ut en sida maträtter (20? st) av alla sparade. Page börja på 0, så `/api/saved` och `/api/saved?page=0` är samma sak. Page=1 är alltså sida 2.
+
+```json
+[
+  {
+    "id": 5,
+    "userId": 1,
+    "dishId": 1,
+    "dish": {
+      "id": 1,
+      "name": "Köttbullar med potatismos",
+      "img": "kottbullar_potatismos.jpg",
+      "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+    }
+  },
+  {
+    "id": 4,
+    "userId": 1,
+    "dishId": 5,
+    "dish": {
+      "id": 5,
+      "name": "Köttbullar och makaroner",
+      "img": "kottbullar_potatismos.jpg",
+      "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+    }
+  },
+  {
+    "id": 3,
+    "userId": 1,
+    "dishId": 3,
+    "dish": {
+      "id": 3,
+      "name": "Korv med potatismos",
+      "img": null,
+      "desc": null,
+    }
+  }
+]
+```
+
+***
+
+```
+GET /api/saved/search/:name
+```
+Tar `name` och visar de senaste 10 sparade maträtter som innehåller det namnet. Bör användas för att visa sparade maträtter när användaren söker igenom sina sparade maträtter. 
+
+```json
+{
+  "id": 5,
+  "userId": 1,
+  "dishId": 1,
+  "dish": {
+    "id": 1,
+    "name": "Köttbullar med potatismos",
+    "img": "kottbullar_potatismos.jpg",
+    "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+  }
+}
+```
+
+***
+
+```
+POST /api/saved
+```
+För att lägga till en sparad maträtt. Behöver data från body, specifikt bara `dishId`.
+
+***
+
+```
+DELETE /api/saved/:id
+```
+För att ta bort en sparad maträtt. Behöver id från maträtten som ska tas bort.
+
+
+### Category - kategorier 
+<!-- TODO: fyll i exempel bättre? -->
+
+```
+GET /api/category
+```
+Får ut alla kategorier som finns i databasen.
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Kött"
+  },
+  {
+    "id": 2,
+    "name": "Fisk"
+  },
+  {
+    "id": 3,
+    "name": "Vegetariskt"
+  },
+  {
+    "id": 4,
+    "name": "Veganskt"
+  }
+]
+```
+
+***
+
+```
+GET /api/category/:id
+```
+Får ut en specifik kategori och dess maträtter.
+
+```json
+{
+  "id": 1,
+  "name": "Kött",
+  "categoryOnDish": {
+    "dish": {
+      "id": 1,
+      "name": "Köttbullar med potatismos",
+      "img": "kottbullar_potatismos.jpg",
+      "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+    },
+  }
+}
+```
+
+### Error - felmeddelanden
+Felmeddelanden kommer ut i denna form: 
+
+```json
+{
+  "errors": [
+    {
+      "type": "field",  // den här är oftast med
+      "msg": "Invalid value", // den här är alltid med
+      "path": "jwt-token", // ibland är path och location med, ibland inte
+      "location": "headers"
+    }
+  ]
+}
+```
+
+<!-- TODO: error? -->

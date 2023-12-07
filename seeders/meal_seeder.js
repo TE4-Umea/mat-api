@@ -3,13 +3,14 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
+    const user = 14;
     await prisma.meal.createMany({
         data: [
-            { userId: 1, dishId: 1, type: 'middag' },
-            { userId: 1, dishId: 2, type: 'lunch' },
-            { userId: 1, dishId: 3, type: 'frukost' },
-            { userId: 2, dishId: 4, type: 'lunch' },
-            { userId: 2, dishId: 2, type: 'middag' },
+            { userId: user, dishId: 1, type: 'middag', time: new Date() },
+            { userId: user, dishId: 3, type: 'lunch', time: new Date() },
+            { userId: user, dishId: 3, type: 'middag', time: new Date(new Date().setDate(new Date().getDate() + 1)) },
+            { userId: user, dishId: 4, type: 'lunch', time: new Date(new Date().setDate(new Date().getDate() + 1)) },
+            { userId: user, dishId: 3, type: 'middag', time: new Date(new Date().setDate(new Date().getDate() + 2)) },
         ],
     });
 }

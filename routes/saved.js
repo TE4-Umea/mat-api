@@ -4,45 +4,35 @@ const { body, param, query, header } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-const dishController = require('../controllers/dish_controller');
+const savedController = require('../controllers/saved_controller');
 
-// getAll /api/dish
-router.get(
-    '/',
+// getAll /api/saved
+router.get('/',
     query('page').isInt().optional({ nullable: true }),
     header('jwt-token').isJWT(),
-    dishController.getAll
+    savedController.getAll
 );
 
-// get:id /api/dish/:id
-router.get('/:id',
-    param('id').isInt(),
-    header('jwt-token').isJWT(),
-    dishController.getOne
-);
-
-// Search /api/dish/search/:name
+// Search /api/saved/search/:name
 router.get(
     '/search/:name',
     param('name').isString().escape(),
     header('jwt-token').isJWT(),
-    dishController.search
+    savedController.search
 );
 
-// Create /api/dish, creates a new dish that everyone can use
+// Create /api/saved, creates a new saved dish
 router.post('/',
-    query('name').isString().escape(),
+    body('dishId').isInt(),
     header('jwt-token').isJWT(),
-    dishController.create
+    savedController.create
 );
 
-// UPDATE?
-
-// DELETE /api/dish/:id
+// Delete /api/saved/:id, deletes a saved that a user has eaten
 router.delete('/:id',
     param('id').isInt(),
     header('jwt-token').isJWT(),
-    dishController.delete
+    savedController.delete
 );
 
 module.exports = router;

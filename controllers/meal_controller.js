@@ -18,11 +18,11 @@ module.exports.getAll = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: 'error: bad token' });
+            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: 'error: bad token' });
+        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
     }
 
     const meals = await prisma.meal.findMany({
@@ -35,8 +35,8 @@ module.exports.getAll = async (req, res) => {
         orderBy: {
             time: 'desc',
         },
-        take: 10,
-        skip: 0 + (skip * 10),
+        take: 20,
+        skip: 0 + (skip * 20),
     });
     res.json(meals);
     //res.json({ meals: meals }); // TODO: Which do I use?
@@ -58,11 +58,11 @@ module.exports.search = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: 'error: bad token' });
+            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: 'error: bad token' });
+        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
     }
 
     // sorted by user
@@ -86,7 +86,7 @@ module.exports.search = async (req, res) => {
             dish: true
         },
         orderBy: {
-            id: 'desc',
+            time: 'desc',
         },
         take: 10
     });
@@ -95,7 +95,7 @@ module.exports.search = async (req, res) => {
 
 // Create /api/meal, creates a new meal that a user has eaten
 module.exports.create = async (req, res) => {
-    const { dishId, type, time } = req.body;
+    const { dishId, type, time } = req.query;
 
     let tokenInfo;
     try {
@@ -105,11 +105,11 @@ module.exports.create = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: 'error: bad token' });
+            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: 'error: bad token' });
+        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
     }
 
     const meal = await prisma.meal.create({
@@ -117,16 +117,17 @@ module.exports.create = async (req, res) => {
             userId: tokenInfo.id,           // userId from token
             dishId: parseInt(dishId),       // dishId from hidden(?) in body
             type: type,                     // frukost, lunch, middag, 
-            //time: Date() from dropdown    // time from dropdown
+            time: time                      // time from dropdown
         }
     });
     res.json(meal);     // TODO: do I need to return anything?
 };
 
 // Update /api/meal/:id, updates a meal that a user has eaten
+// not to be used right now, kinda
 module.exports.update = async (req, res) => {
     const { id } = req.params;
-    const { dishId, type, time } = req.body;
+    const { dishId, type, time, icon } = req.body;
 
     let tokenInfo;
     try {
@@ -136,11 +137,11 @@ module.exports.update = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: 'error: bad token' });
+            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: 'error: bad token' });
+        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
     }
 
     const meal = await prisma.meal.update({
@@ -150,8 +151,9 @@ module.exports.update = async (req, res) => {
         data: {
             userId: tokenInfo.id,
             dishId: parseInt(dishId),
-            type: type
-            //time: Date() from dropdown?
+            type: type,
+            icon: icon,
+            time: time
         }
     });
     res.json(meal);
@@ -169,11 +171,11 @@ module.exports.delete = async (req, res) => {
             tokenInfo = jwt.decode(req.headers['jwt-token']);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: 'error: bad token' });
+            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
         }
     } catch (err) {
         console.log(err);
-        return res.status(401).json({ errors: 'error: bad token' });
+        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
     }
 
     const meal = await prisma.meal.delete({

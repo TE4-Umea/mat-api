@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE `dish` ADD COLUMN `desc` VARCHAR(191) NULL,
+    ADD COLUMN `img` VARCHAR(191) NULL;
+
+-- AlterTable
+ALTER TABLE `meal` ADD COLUMN `icon` VARCHAR(191) NULL;
