@@ -290,9 +290,9 @@ Du borde kunna använda ikoner genom typ denna kod:
 ***
 
 ```
-POST /api/meal
+POST /api/meal?dishId=${dishId}&type=${type}&time=${time}
 ```
-För att lägga till en måltid. Behöver data från body, specifikt `time`, `type` och den valda maträttens id (`dishId`). `type` ska vara en av `frukost`, `lunch` eller `middag` och `time` ska vara i formatet(?) `Date()`, alltså se ut på detta sätt `new Date("2023-12-06T16:11:52.942Z")`.
+För att lägga till en måltid. Behöver data från query, specifikt `time`, `type` och den valda maträttens id (`dishId`). `type` ska vara en av `lunch` eller `middag` och `time` ska vara i formatet(?) `Date()`, alltså se ut på detta sätt `new Date("2023-12-06T16:11:52.942Z")`.
 <!-- TODO: date? -->
 
 Enklaste sättet att få ut datumet för morgondagen vad jag har hittat är såhär:
