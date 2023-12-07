@@ -95,7 +95,7 @@ module.exports.search = async (req, res) => {
 
 // Create /api/saved, creates a new saved that a user has eaten
 module.exports.create = async (req, res) => {
-    const { dishId } = req.body;
+    const { dishId } = req.query;
 
     let tokenInfo;
     try {
@@ -112,7 +112,8 @@ module.exports.create = async (req, res) => {
         return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
     }
 
-    const exists = await prisma.saved.findUnique({
+    // doesn't work
+    const exists = await prisma.saved.findFirst({
         where: {
             AND: [
                 {
@@ -125,7 +126,7 @@ module.exports.create = async (req, res) => {
         }
     });
     if (exists !== null) {
-        return res.status(400).json({ errors: [{ 'msg': 'Already in users saved' }] });
+        return res.status(400).json({ errors: [{ 'msg': 'Already exists in users saved' }] });
     }
 
     const saved = await prisma.saved.create({

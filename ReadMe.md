@@ -63,7 +63,7 @@ Tar bort användaren från databasen.
 ```
 GET /api/dish || /api/dish?page=1
 ```
-Får ut en sida maträtter (20? st) av alla som finns i databasen. Page börja på 0, så `/api/dish` och `/api/dish?page=0` är samma sak. Page=1 är alltså sida 2.
+Får ut en sida maträtter (20? st) av alla som finns i databasen. Page börja på 0, så `/api/dish` och `/api/dish?page=0` är samma sak. Page=1 är alltså sida 2. Visar saved om användaren har sparat maträtten, annars är saved en tom array.
 
 Utdata: 
 ```json
@@ -73,16 +73,12 @@ Utdata:
     "name": "Cheeseburgare",
     "img": "kottbullar_potatismos.jpg",
     "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
-    "categoryOnDish": [
+    "categoryOnDish": [],
+    "saved": [
       {
-        "category": {
-          "id": 1,
-          "name": "Kött"
-        },
-        "category": {
-          "id": 2,
-          "name": "vegetariskt"
-        }
+        "id": 1,
+        "userId": 14,
+        "dishId": 1
       }
     ]
   },
@@ -91,19 +87,15 @@ Utdata:
     "name": "Hamburgare",
     "img": null,
     "desc": null,
-    "categoryOnDish": {
-      "category": {
-        "id": 2,
-        "name": "vegetariskt"
-      }
-    }
+    "saved": []
   },
   {
     "id": 3,
     "name": "Korv med potatismos",
     "img": "korv_potatismos.jpg",
     "desc": "Koka potatis och gör mos. Stek korven. Servera.",
-    "categoryOnDish": null
+    "categoryOnDish": [],
+    "saved": []
   },
   ...
 ]
@@ -122,12 +114,14 @@ För att få ut en specifik maträtt.
   "name": "Cheeseburgare",
   "img": "cheeseburgare.jpg",
   "desc": null,
-  "categoryOnDish": {
-      "category": {
-        "id": 2,
-        "name": "vegetariskt"
-      }
+  "categoryOnDish": [],
+  "saved": [
+    {
+      "id": 1,
+      "userId": 14,
+      "dishId": 1
     }
+  ]
 }
 ```
 
@@ -146,24 +140,28 @@ Utdata för '/api/dish/search/burgare'
     "name": "Cheeseburgare",
     "img": "cheeseburgare.jpg",
     "desc": null,
-    "categoryOnDish": {
-      "category": {
-        "id": 2,
-        "name": "vegetariskt"
+    "categoryOnDish": [],
+    "saved": [
+      {
+        "id": 1,
+        "userId": 14,
+        "dishId": 1
       }
-    }
+    ]
   },
   {
-      "id": 6,
-      "name": "Hamburgare",
-      "img": null,
-      "desc": "stek hamburgare",
-      "categoryOnDish": {
-        "category": {
-          "id": 2,
-          "name": "vegetariskt"
-        }
+    "id": 6,
+    "name": "Hamburgare",
+    "img": null,
+    "desc": "stek hamburgare",
+    "categoryOnDish": [],
+    "saved": [
+      {
+        "id": 1,
+        "userId": 14,
+        "dishId": 1
       }
+    ]
   }
 ]
 ```
@@ -380,9 +378,9 @@ Tar `name` och visar de senaste 10 sparade maträtter som innehåller det namnet
 ***
 
 ```
-POST /api/saved
+POST /api/saved?dishId=3
 ```
-För att lägga till en sparad maträtt. Behöver data från body, specifikt bara `dishId`.
+För att lägga till en sparad maträtt. Behöver data från query, specifikt bara `dishId`.
 
 ***
 
@@ -392,7 +390,7 @@ DELETE /api/saved/:id
 För att ta bort en sparad maträtt. Behöver id från maträtten som ska tas bort.
 
 
-### Category - kategorier 
+### Category - kategorier [COMING SOON]
 <!-- TODO: fyll i exempel bättre? -->
 
 ```
