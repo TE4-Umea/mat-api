@@ -179,9 +179,9 @@ Du borde kunna använda bilder genom typ denna kod:
 ***
 
 ```
-POST /api/dish
+POST /api/dish?name=
 ```
-För att lägga till en maträtt. Behöver data från body, specifikt bara namnet. 
+För att lägga till en maträtt. Behöver namn data från query. 
 
 ***
 
