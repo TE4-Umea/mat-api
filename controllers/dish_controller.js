@@ -124,11 +124,10 @@ module.exports.search = async (req, res) => {
 
 // Create /api/dish
 module.exports.create = async (req, res) => {
-    console.log(req.query);
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
-    const { name } = req.body;
+    const { name } = req.query;
 
     let tokenInfo;
     try {
