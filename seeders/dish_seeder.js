@@ -44,6 +44,7 @@ async function main() {
 
             { name: 'Tomatsoppa', img: 'tomatsoppa.jpg', desc: 'Koka tomatsoppa. Servera. ' },
             { name: 'Morotssoppa', img: 'morotssoppa.jpg', desc: 'Koka morotssoppa. Servera. ' },
+            { name: 'Pumpasoppa', desc: 'Koka pumpasoppa. Servera. ' },
             { name: 'Sallad', img: 'sallad.jpg', desc: 'Gör sallad. Servera. ' },
             { name: 'Linsgryta', img: 'linsgryta.jpg', desc: 'Koka linser. Stek lök. Blanda linserna med löken. Servera. ' },
             { name: 'Falafel', img: 'falafel.jpg' },
