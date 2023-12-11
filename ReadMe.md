@@ -16,6 +16,16 @@ När du loggar in skapas det en JWT token av din info som kommer tillbaka till d
 ## Exempel
 
 ### User - användare
+<!--
+loggar in i databasen med användare: te4-mat
+
+Login från utsidan:
+mysql -u te4-mat -h jupiter.umea-ntig.se -P 3308 -p 
+
+port 3308 för min db
+
+https://www.prisma.io/docs/orm/prisma-client/deployment/deploy-migrations-from-a-local-environment
+-->
 
 ```
 POST /api/user/:email
@@ -87,6 +97,7 @@ Utdata:
     "name": "Hamburgare",
     "img": null,
     "desc": null,
+    "categoryOnDish": [],
     "saved": []
   },
   {
@@ -229,7 +240,7 @@ Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum
   {
     "id": 3,
     "time": "2023-11-14T11:44:22.356Z",
-    "type": "breakfast",
+    "type": "middag",
     "icon": null,
     "userId": 1,
     "dishId": 3,
