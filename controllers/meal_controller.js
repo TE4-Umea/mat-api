@@ -10,24 +10,9 @@ module.exports.getAll = async (req, res) => {
     }
     const skip = req.query.page || 0;
 
-    let tokenInfo;
-    try {
-        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        if (verified) {
-            // Access Granted
-            tokenInfo = jwt.decode(req.headers['jwt-token']);
-        } else {
-            // Access Denied
-            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
-        }
-    } catch (err) {
-        console.log(err);
-        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
-    }
-
     const meals = await prisma.meal.findMany({
         where: {
-            userId: tokenInfo.id
+            userId: req.tokenInfo.id
         },
         include: {
             dish: true
@@ -50,21 +35,6 @@ module.exports.search = async (req, res) => {
 
     const { name } = req.params;
 
-    let tokenInfo;
-    try {
-        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        if (verified) {
-            // Access Granted
-            tokenInfo = jwt.decode(req.headers['jwt-token']);
-        } else {
-            // Access Denied
-            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
-        }
-    } catch (err) {
-        console.log(err);
-        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
-    }
-
     // sorted by user
     // takes 10
     const meal = await prisma.meal.findMany({
@@ -78,7 +48,7 @@ module.exports.search = async (req, res) => {
                     },
                 },
                 {
-                    userId: tokenInfo.id
+                    userId: req.tokenInfo.id
                 }
             ]
         },
@@ -97,24 +67,9 @@ module.exports.search = async (req, res) => {
 module.exports.create = async (req, res) => {
     const { dishId, type, time } = req.query;
 
-    let tokenInfo;
-    try {
-        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        if (verified) {
-            // Access Granted
-            tokenInfo = jwt.decode(req.headers['jwt-token']);
-        } else {
-            // Access Denied
-            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
-        }
-    } catch (err) {
-        console.log(err);
-        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
-    }
-
     const meal = await prisma.meal.create({
         data: {
-            userId: tokenInfo.id,           // userId from token
+            userId: req.tokenInfo.id,           // userId from token
             dishId: parseInt(dishId),       // dishId from hidden(?) in body
             type: type,                     // frukost, lunch, middag, 
             time: time                      // time from dropdown
@@ -129,27 +84,12 @@ module.exports.update = async (req, res) => {
     const { id } = req.params;
     const { dishId, type, time, icon } = req.body;
 
-    let tokenInfo;
-    try {
-        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        if (verified) {
-            // Access Granted
-            tokenInfo = jwt.decode(req.headers['jwt-token']);
-        } else {
-            // Access Denied
-            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
-        }
-    } catch (err) {
-        console.log(err);
-        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
-    }
-
     const meal = await prisma.meal.update({
         where: {
             id: parseInt(id)
         },
         data: {
-            userId: tokenInfo.id,
+            userId: req.tokenInfo.id,
             dishId: parseInt(dishId),
             type: type,
             icon: icon,
@@ -162,21 +102,6 @@ module.exports.update = async (req, res) => {
 // delete /api/meal/:id
 module.exports.delete = async (req, res) => {
     const { id } = req.params;
-
-    let tokenInfo;
-    try {
-        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        if (verified) {
-            // Access Granted
-            tokenInfo = jwt.decode(req.headers['jwt-token']);
-        } else {
-            // Access Denied
-            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
-        }
-    } catch (err) {
-        console.log(err);
-        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
-    }
 
     const meal = await prisma.meal.delete({
         where: {

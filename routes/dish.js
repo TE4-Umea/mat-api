@@ -11,7 +11,6 @@ const dishController = require('../controllers/dish_controller');
 router.get(
     '/',
     query('page').isInt().optional({ nullable: true }),
-    header('jwt-token').isJWT(),
     auth,
     dishController.getAll
 );
@@ -19,7 +18,7 @@ router.get(
 // get:id /api/dish/:id
 router.get('/:id',
     param('id').isInt(),
-    header('jwt-token').isJWT(),
+    auth,
     dishController.getOne
 );
 
@@ -27,14 +26,14 @@ router.get('/:id',
 router.get(
     '/search/:name',
     param('name').isString().escape(),
-    header('jwt-token').isJWT(),
+    auth,
     dishController.search
 );
 
 // Create /api/dish, creates a new dish that everyone can use
 router.post('/',
     query('name').isString().escape(),
-    header('jwt-token').isJWT(),
+    auth,
     dishController.create
 );
 
@@ -43,7 +42,7 @@ router.post('/',
 // DELETE /api/dish/:id
 router.delete('/:id',
     param('id').isInt(),
-    header('jwt-token').isJWT(),
+    auth,
     dishController.delete
 );
 

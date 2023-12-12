@@ -5,6 +5,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const userController = require('../controllers/user_controller');
+const { auth } = require('../middleware/auth');
 
 // idk, im not sure how or which of these are gonna get used
 
@@ -21,7 +22,7 @@ router.post('/:email',
 
 // delete /api/user/, deletes user and all meals associated with them
 router.delete('/',
-    header('jwt-token').isJWT(),
+    auth,
     userController.delete
 );
 

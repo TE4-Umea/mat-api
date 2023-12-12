@@ -5,18 +5,19 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const categoryController = require('../controllers/category_controller');
+const { auth } = require('../middleware/auth');
 
 // getAll /api/category
 router.get(
     '/',
-    header('jwt-token').isJWT(),
+    auth,
     categoryController.getAll
 );
 
 // get:id /api/category/:id
 router.get('/:id',
     param('id').isInt(),
-    header('jwt-token').isJWT(),
+    auth,
     categoryController.getOne
 );
 

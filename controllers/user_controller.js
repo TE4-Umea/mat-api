@@ -52,30 +52,15 @@ module.exports.delete = async (req, res) => {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
 
-    let tokenInfo;
-    try {
-        const verified = jwt.verify(req.headers['jwt-token'], process.env.JWT_SECRET);
-        if (verified) {
-            // Access Granted
-            tokenInfo = jwt.decode(req.headers['jwt-token']);
-        } else {
-            // Access Denied
-            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
-        }
-    } catch (err) {
-        console.log(err);
-        return res.status(401).json({ errors: [{ 'type': err.name, 'msg': err.message }] });
-    }
-
     const meal = await prisma.meal.deleteMany({
         where: {
-            userId: tokenInfo.id
+            userId: req.tokenInfo.id
         }
     });
 
     const user = await prisma.user.delete({
         where: {
-            id: tokenInfo.id
+            id: req.tokenInfo.id
         }
     });
 
