@@ -3,6 +3,7 @@ const router = express.Router();
 const { body, param, query, header } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+const { auth } = require('../middleware/auth');
 
 const dishController = require('../controllers/dish_controller');
 
@@ -11,6 +12,7 @@ router.get(
     '/',
     query('page').isInt().optional({ nullable: true }),
     header('jwt-token').isJWT(),
+    auth,
     dishController.getAll
 );
 
