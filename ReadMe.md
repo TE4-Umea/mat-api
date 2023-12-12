@@ -1,14 +1,5 @@
 # API för en matapp
-
-## Styleguide
-* Commonjs
-* 4 mellanslags-indentering
-* camelCase i kod
-* snake_case i filnamn
-* Semicolon efter varje kod-rad
-* Enkelfnuttar
-
-Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
+API:et ligger uppe på [http://jupiter.umea-ntig.se:3008/](http://jupiter.umea-ntig.se:3008/). 
 
 ## JWT Token
 När du loggar in skapas det en JWT token av din info som kommer tillbaka till dig i frontenden och som du ska spara i localstorage. Den tokenen ska skickas med i headern på alla requests som görs till API:et. När du loggar ut ska du ta bort tokenen från localstorage.
@@ -46,7 +37,7 @@ fetch("/api/...", {
 Och utdatat ser ut så här:
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzAxMDc0NDU3fQ.EhGsCJQY01751a08aVO_ZilF7EFfTCkIVEUbVilcSLU_test_inte_riktig_token",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJsdW5kbWFya2hqYWxtYXJAZ21haWwuY29tIiwiaWF0IjoxNzAyMzcxNDkzfQ.G4cX4P_KmIt8vKcvDM81VTjn26TPETZIIJ_NB2l32ps",
 }
 ```
 
@@ -468,4 +459,12 @@ Felmeddelanden kommer ut i denna form:
 }
 ```
 
-<!-- TODO: error? -->
+## Styleguide
+* Commonjs
+* 4 mellanslags-indentering
+* camelCase i kod
+* snake_case i filnamn
+* Semicolon efter varje kod-rad
+* Enkelfnuttar
+
+Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
