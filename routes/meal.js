@@ -5,11 +5,12 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const mealController = require('../controllers/meal_controller');
+const { auth } = require('../middleware/auth');
 
 // getAll /api/meal
 router.get('/',
     query('page').isInt().optional({ nullable: true }),
-    header('jwt-token').isJWT(),
+    auth,
     mealController.getAll
 );
 
@@ -17,7 +18,7 @@ router.get('/',
 router.get(
     '/search/:name',
     param('name').isString().escape(),
-    header('jwt-token').isJWT(),
+    auth,
     mealController.search
 );
 
@@ -26,7 +27,7 @@ router.post('/',
     query('dishId').isInt(),
     query('time').isISO8601(), // not sure if this is right
     query('type').isString().escape(),
-    header('jwt-token').isJWT(),
+    auth,
     mealController.create
 );
 
@@ -36,7 +37,7 @@ router.put('/:id',
     body('dishId').isInt(),
     body('time').isISO8601(), // not sure if this is right
     body('type').isString().escape(),
-    header('jwt-token').isJWT(),
+    auth,
     mealController.update
 );
 
@@ -44,7 +45,7 @@ router.put('/:id',
 // Delete /api/meal/:id, deletes a meal that a user has eaten
 router.delete('/:id',
     param('id').isInt(),
-    header('jwt-token').isJWT(),
+    auth,
     mealController.delete
 );
 

@@ -5,11 +5,12 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const savedController = require('../controllers/saved_controller');
+const { auth } = require('../middleware/auth');
 
 // getAll /api/saved
 router.get('/',
     query('page').isInt().optional({ nullable: true }),
-    header('jwt-token').isJWT(),
+    auth,
     savedController.getAll
 );
 
@@ -17,21 +18,21 @@ router.get('/',
 router.get(
     '/search/:name',
     param('name').isString().escape(),
-    header('jwt-token').isJWT(),
+    auth,
     savedController.search
 );
 
 // Create /api/saved, creates a new saved dish
 router.post('/',
     query('dishId').isInt(),
-    header('jwt-token').isJWT(),
+    auth,
     savedController.create
 );
 
 // Delete /api/saved/:id, deletes a saved that a user has eaten
 router.delete('/:id',
     param('id').isInt(),
-    header('jwt-token').isJWT(),
+    auth,
     savedController.delete
 );
 

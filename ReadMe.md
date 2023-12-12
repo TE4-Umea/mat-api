@@ -2,7 +2,7 @@
 API:et ligger uppe på [http://jupiter.umea-ntig.se:3008/](http://jupiter.umea-ntig.se:3008/). 
 
 ## JWT Token
-När du loggar in skapas det en JWT token av din info som kommer tillbaka till dig i frontenden och som du ska spara i localstorage. Den tokenen ska skickas med i headern på alla requests som görs till API:et. När du loggar ut ska du ta bort tokenen från localstorage.
+När du loggar in skapas det en JWT token av din info som kommer tillbaka till dig i frontenden och som du ska spara i localstorage. Den tokenen ska skickas med i headern som en authorization på alla requests som görs till API:et. När du loggar ut ska du ta bort tokenen från localstorage.
 
 ## Exempel
 
@@ -13,22 +13,20 @@ loggar in i databasen med användare: te4-mat
 Login från utsidan:
 mysql -u te4-mat -h jupiter.umea-ntig.se -P 3308 -p 
 
-port 3308 för min db
-
 https://www.prisma.io/docs/orm/prisma-client/deployment/deploy-migrations-from-a-local-environment
 -->
 
 ```
 POST /api/user/:email
 ```
-Skapar användare eller loggar in användaren. Behöver email från frontend-login, typ `session.user.email`. Ger tillbaka en JWT-token som ska sparas i localstorage och användas genom att skicka den som `header` i calls till API:et. För att skicka med den behövs det headern `jwt-token` med JWT-tokenen som värde. Det ser ut ungefär såhär:
+Skapar användare eller loggar in användaren. Behöver email från frontend-login, typ `session.user.email`. Ger tillbaka en JWT-token som ska sparas i localstorage och användas genom att skicka den i `header` i calls till API:et. För att skicka med den behövs det headern `authorization` med "Bearer" och JWT-tokenen som värde. Det ser ut ungefär såhär:
 
 ```js
 fetch("/api/...", {
   ...
   method: "POST" || "GET" || "DELETE" || "PUT", // use the correct one of these, default is GET
   headers: {
-    "jwt-token": localStorage.getItem("jwt-token"),
+    authorization: 'Bearer' + localStorage.getItem("jwt-token"),
   },
   ...
 })
