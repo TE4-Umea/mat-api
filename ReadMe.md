@@ -26,7 +26,8 @@ fetch("/api/...", {
   ...
   method: "POST" || "GET" || "DELETE" || "PUT", // use the correct one of these, default is GET
   headers: {
-    authorization: 'Bearer' + localStorage.getItem("jwt-token"),
+    authorization: 'Bearer ' + localStorage.getItem("jwt-token"),
+                       // ^ OBS: mellanslag här
   },
   ...
 })
