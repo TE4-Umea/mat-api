@@ -23,4 +23,4 @@ app.use('/api/img', imageRouter);
 app.use('/api/saved', savedRouter);
 app.use('/api/category', categoryRouter);
 
-app.listen(3000);
+module.exports = app;
