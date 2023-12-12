@@ -5,10 +5,8 @@ module.exports.auth = async (req, res, next) => {
         ? req.headers.authorization.split(' ')
         : null;
 
-    console.log(authHeader);
-
     if (!authHeader || authHeader[0] !== 'Bearer' || !authHeader[1]) {
-        return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
+        return res.status(401).json({ errors: [{ 'msg': 'Improper token', value: authHeader }] });
     }
 
     let token = authHeader[1];
@@ -20,7 +18,7 @@ module.exports.auth = async (req, res, next) => {
             tokenInfo = jwt.decode(token);
         } else {
             // Access Denied
-            return res.status(401).json({ errors: [{ 'msg': 'Improper token' }] });
+            return res.status(401).json({ errors: [{ 'msg': 'Improper token, not matching secret' }] });
         }
     } catch (err) {
         console.log(err);
