@@ -14,6 +14,15 @@ Login från utsidan:
 mysql -u te4-mat -h jupiter.umea-ntig.se -P 3308 -p 
 
 https://www.prisma.io/docs/orm/prisma-client/deployment/deploy-migrations-from-a-local-environment
+
+Login: 
+
+ssh hjalmar@jupiter.umea-ntig.se
+lxc shell te4-
+su node
+cd ~
+cd mat-api/
+
 -->
 
 ```
