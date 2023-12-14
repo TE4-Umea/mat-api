@@ -206,9 +206,7 @@ För att ta bort en maträtt. Behöver id från maträtten som ska tas bort.
 GET /api/meal || /api/meal?page=1
 ```
 
-Får ut en sida maträtter (40? st) av alla sparade, i ordningen av senast datum. Page börja på 0, så `/api/meal` och `/api/meal?page=0` är samma sak. Page=1 är alltså sida 2. `time` bör användas för att visa bara datumet för måltiden, vilken tid det är är inte viktigt.
-
-<!-- TODO: få bara användarens måltider  -->
+Får ut en sida maträtter (40? st) av användarens sparade, i ordningen av senast datum. Page börja på 0, så `/api/meal` och `/api/meal?page=0` är samma sak. Page=1 är alltså sida 2. `time` bör användas för att visa bara datumet för måltiden, vilken tid det är är inte viktigt.
 
 ```json
 [
@@ -229,7 +227,7 @@ Får ut en sida maträtter (40? st) av alla sparade, i ordningen av senast datum
     "time": "2023-11-14T11:44:54.789Z",
     "type": "lunch",
     "icon": "img.png",
-    "userId": 1,
+    "userId": 2,
     "dishId": 5,
     "dish": {
       "id": 5,
@@ -241,7 +239,7 @@ Får ut en sida maträtter (40? st) av alla sparade, i ordningen av senast datum
     "time": "2023-11-14T11:44:22.356Z",
     "type": "middag",
     "icon": null,
-    "userId": 1,
+    "userId": 2,
     "dishId": 3,
     "dish": {
       "id": 3,
