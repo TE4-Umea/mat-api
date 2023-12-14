@@ -33,7 +33,7 @@ Skapar användare eller loggar in användaren. Behöver email från frontend-log
 ```js
 fetch("/api/...", {
   ...
-  method: "POST" || "GET" || "DELETE" || "PUT", // use the correct one of these, default is GET
+  method: "POST" || "GET" || "DELETE" || "PUT", // använd den rätta av dessa, GET är standard
   headers: {
     authorization: 'Bearer ' + localStorage.getItem("jwt-token"),
                        // ^ OBS: mellanslag här
@@ -206,7 +206,7 @@ För att ta bort en maträtt. Behöver id från maträtten som ska tas bort.
 GET /api/meal || /api/meal?page=1
 ```
 
-Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum. Page börja på 0, så `/api/meal` och `/api/meal?page=0` är samma sak. Page=1 är alltså sida 2. `time` bör användas för att visa bara datumet för måltiden, vilket tid det är är inte viktigt.
+Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum. Page börja på 0, så `/api/meal` och `/api/meal?page=0` är samma sak. Page=1 är alltså sida 2. `time` bör användas för att visa bara datumet för måltiden, vilken tid det är är inte viktigt.
 
 <!-- TODO: få bara användarens måltider  -->
 
