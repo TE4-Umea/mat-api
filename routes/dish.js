@@ -33,6 +33,7 @@ router.get(
 // Create /api/dish, creates a new dish that everyone can use
 router.post('/',
     query('name').isString().escape(),
+    query('desc').isString().escape().optional({ nullable: true }),
     auth,
     dishController.create
 );
