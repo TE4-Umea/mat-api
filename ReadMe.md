@@ -72,7 +72,7 @@ Tar bort användaren från databasen.
 ```
 GET /api/dish || /api/dish?page=1
 ```
-Får ut en sida maträtter (20? st) av alla som finns i databasen. Page börja på 0, så `/api/dish` och `/api/dish?page=0` är samma sak. Page=1 är alltså sida 2. Visar saved om användaren har sparat maträtten, annars är saved en tom array.
+Får ut en sida maträtter (40? st) av alla som finns i databasen. Page börja på 0, så `/api/dish` och `/api/dish?page=0` är samma sak. Page=1 är alltså sida 2. Visar saved om användaren har sparat maträtten, annars är saved en tom array.
 
 Utdata: 
 ```json
@@ -206,7 +206,7 @@ För att ta bort en maträtt. Behöver id från maträtten som ska tas bort.
 GET /api/meal || /api/meal?page=1
 ```
 
-Får ut en sida maträtter (20? st) av alla sparade, i ordningen av senast datum. Page börja på 0, så `/api/meal` och `/api/meal?page=0` är samma sak. Page=1 är alltså sida 2. `time` bör användas för att visa bara datumet för måltiden, vilken tid det är är inte viktigt.
+Får ut en sida maträtter (40? st) av alla sparade, i ordningen av senast datum. Page börja på 0, så `/api/meal` och `/api/meal?page=0` är samma sak. Page=1 är alltså sida 2. `time` bör användas för att visa bara datumet för måltiden, vilken tid det är är inte viktigt.
 
 <!-- TODO: få bara användarens måltider  -->
 
@@ -324,7 +324,7 @@ För att ta bort en måltid. Behöver id från måltiden som ska tas bort.
 GET /api/saved || /api/saved?page=1
 ```
 
-Får ut en sida maträtter (20? st) av alla sparade. Page börja på 0, så `/api/saved` och `/api/saved?page=0` är samma sak. Page=1 är alltså sida 2.
+Får ut en sida maträtter (40? st) av alla sparade. Page börja på 0, så `/api/saved` och `/api/saved?page=0` är samma sak. Page=1 är alltså sida 2.
 
 ```json
 [

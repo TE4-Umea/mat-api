@@ -26,8 +26,8 @@ module.exports.getAll = async (req, res) => {
                 }
             }
         },
-        take: 20,
-        skip: 0 + (skip * 20),
+        take: 40,
+        skip: 0 + (skip * 40),
     });
     res.json(dishes);
 };

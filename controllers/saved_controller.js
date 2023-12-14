@@ -20,8 +20,8 @@ module.exports.getAll = async (req, res) => {
         orderBy: {
             id: 'desc',
         },
-        take: 20,
-        skip: 0 + (skip * 20),
+        take: 40,
+        skip: 0 + (skip * 40),
     });
     res.json(saveds);
     //res.json({ saveds: saveds }); // TODO: Which do I use?
