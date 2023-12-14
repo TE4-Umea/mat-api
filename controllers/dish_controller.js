@@ -97,7 +97,10 @@ module.exports.create = async (req, res) => {
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
+
+    const desc = req.query.desc || null;
     const { name } = req.query;
+    console.log(desc);
 
     const existingDish = await prisma.dish.findUnique({
         where: {
@@ -112,7 +115,7 @@ module.exports.create = async (req, res) => {
     const dish = await prisma.dish.create({
         data: {
             name: name,
-            // desc: req.body.desc,
+            desc: desc,
             // categoryOnDish: {
             //     create: [
             //         {
