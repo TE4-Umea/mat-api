@@ -100,7 +100,6 @@ module.exports.create = async (req, res) => {
 
     const desc = req.query.desc || null;
     const { name } = req.query;
-    console.log(desc);
 
     const existingDish = await prisma.dish.findUnique({
         where: {
