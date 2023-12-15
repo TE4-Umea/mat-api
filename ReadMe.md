@@ -32,13 +32,11 @@ Skapar användare eller loggar in användaren. Behöver email från frontend-log
 
 ```js
 fetch("/api/...", {
-  ...
   method: "POST" || "GET" || "DELETE" || "PUT", // använd den rätta av dessa, GET är standard
   headers: {
     authorization: 'Bearer ' + localStorage.getItem("jwt-token"),
                        // ^ OBS: mellanslag här
   },
-  ...
 })
 ```
 
@@ -107,7 +105,6 @@ Utdata:
     "categoryOnDish": [],
     "saved": []
   },
-  ...
 ]
 ```
 

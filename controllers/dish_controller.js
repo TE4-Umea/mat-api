@@ -144,9 +144,21 @@ module.exports.delete = async (req, res) => {
         }
     });
 
-    // Should someone elses past foods be deleted when I delete a dish? idk
+    // Should someone elses past meals and saveds/favorites be deleted when I delete a dish? idk
     // delete all meals with this dishId
+    // Should be before dish delete
+
     // const meal = await prisma.meal.deleteMany({
+    //     where: {
+    //         dishId: parseInt(id)
+    //     }
+    // });
+    // const saved = await prisma.saved.deleteMany({
+    //     where: {
+    //         dishId: parseInt(id)
+    //     }
+    // });
+    // const categoryOnDish = await prisma.categoryOnDish.deleteMany({
     //     where: {
     //         dishId: parseInt(id)
     //     }
