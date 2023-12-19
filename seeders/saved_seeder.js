@@ -3,7 +3,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-    const user = 14;
+    const user = 1;
     await prisma.saved.createMany({
         data: [
             { dishId: 1, userId: user },
