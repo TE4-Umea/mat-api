@@ -80,7 +80,16 @@ Utdata:
     "name": "Cheeseburgare",
     "img": "kottbullar_potatismos.jpg",
     "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
-    "categoryOnDish": [],
+    "categoryOnDish": [
+      {
+        "categoryId": 3,
+        "dishId": 1,
+        "category": {
+          "id": 3,
+          "name": "Kött"
+        }
+      }
+    ],
     "saved": [
       {
         "id": 1,
@@ -94,7 +103,24 @@ Utdata:
     "name": "Hamburgare",
     "img": null,
     "desc": null,
-    "categoryOnDish": [],
+    "categoryOnDish": [
+      {
+        "categoryId": 1,
+        "dishId": 24,
+        "category": {
+          "id": 1,
+          "name": "Vegetariansk"
+        }
+      },
+      {
+        "categoryId": 2,
+        "dishId": 24,
+        "category": {
+          "id": 2,
+          "name": "Vegansk"
+        }
+      }
+    ],
     "saved": []
   },
   {
@@ -305,7 +331,12 @@ new Date(new Date().setDate(new Date().getDate() + 1))
 
 ***
 
-<!-- UPDATE? -->
+<!-- UPDATE finns men bör inte användas.
+```
+PUT /api/meal/:id?dishId=${dishId}&type=${type}&time=${time}&icon=${icon}
+```
+För att uppdatera en måltid. Behöver id från måltiden som ska uppdateras och data från query, specifikt `time`, `type`, `icon` och den valda maträttens id (`dishId`). Om något inte ska uppdateras så kan det skickas med som `null`, skicka därför alltid in dishId, time och type.
+-->
 
 ```
 DELETE /api/meal/:id
@@ -395,7 +426,7 @@ DELETE /api/saved/:id
 För att ta bort en sparad maträtt. Behöver id från maträtten som ska tas bort.
 
 
-### Category - kategorier [COMING SOON]
+### Category - kategorier
 <!-- TODO: fyll i exempel bättre? -->
 
 ```
@@ -434,15 +465,29 @@ Får ut en specifik kategori och dess maträtter.
 ```json
 {
   "id": 1,
-  "name": "Kött",
-  "categoryOnDish": {
-    "dish": {
-      "id": 1,
-      "name": "Köttbullar med potatismos",
-      "img": "kottbullar_potatismos.jpg",
-      "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+  "name": "Vegetariansk",
+  "categoryOnDish": [
+    {
+      "categoryId": 1,
+      "dishId": 18,
+      "dish": {
+        "id": 18,
+        "name": "Pannkakor",
+        "img": "pannkakor.jpg",
+        "desc": "Stek pannkakor. Servera med sylt och grädde. "
+      }
     },
-  }
+    {
+      "categoryId": 1,
+      "dishId": 19,
+      "dish": {
+        "id": 19,
+        "name": "Tomatsoppa",
+        "img": "tomatsoppa.jpg",
+        "desc": "Koka tomatsoppa. Servera. "
+      }
+    },
+  ]
 }
 ```
 

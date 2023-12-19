@@ -82,7 +82,10 @@ module.exports.create = async (req, res) => {
 // not to be used right now, kinda
 module.exports.update = async (req, res) => {
     const { id } = req.params;
-    const { dishId, type, time, icon } = req.body;
+    const dishId = req.query.dishId || null;
+    const type = req.query.type || null;
+    const time = req.query.time || null;
+    const icon = req.query.icon || null;
 
     const meal = await prisma.meal.update({
         where: {

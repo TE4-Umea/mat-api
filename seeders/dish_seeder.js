@@ -3,22 +3,36 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-    //const random = Math.floor(Math.random() * 10) + 1;
     // await prisma.dish.create({
-    // data: {
-    // name: 'Sallad', img: 'sallad.jpg', desc: 'Gör sallad. Servera. ',
-    // categoryOnDish: {
-    // connectOrCreate: {
-    // where: {
-    // categoryId: 2,
-    // },
-    // create: { name: 'Vegansk' }
-    // }
-    // }
-    // },
+    //     data: {
+    //         name: 'Sallad4', img: 'sallad.jpg', desc: 'Gör sallad. Servera. ',
+    //         categoryOnDish: {
+    //             create: [
+    //                 {
+    //                     category: {
+    //                         connectOrCreate: {
+    //                             where: {
+    //                                 id: 1,
+    //                             },
+    //                             create: { name: 'Vegetarisk' }
+    //                         },
+    //                     },
+    //                 },
+    //                 {
+    //                     category: {
+    //                         connectOrCreate: {
+    //                             where: {
+    //                                 id: 2,
+    //                             },
+    //                             create: { name: 'Vegansk' }
+    //                         },
+    //                     },
+    //                 }
+    //             ],
+    //         }
+    //     },
     // });
 
-    // categoryOnDish { findOrCreate: { category: { name: 'Kött'} } } // idk
     await prisma.dish.createMany({
         data: [
             { name: 'Hamburgare', img: 'hamburgare.jpg', desc: 'Stek hamburgare. Servera med bröd och ketchup. ' },
@@ -37,8 +51,8 @@ async function main() {
             { name: 'Skinksås med pasta', img: 'skinksas.jpg', desc: 'Koka pasta. Gör skinksås. Blanda skinkan med krossade tomater. Servera. ' },
 
             { name: 'Fiskpinnar', img: 'fiskpinnar.jpg', desc: 'Stek fiskpinnar. Potatis rekommenderas till sidan. Servera. ' },
-            { name: 'Kokt lax med potatis', img: 'lax_potatis.jpg', desc: 'Koka lax samt potatis. Servera. ' },
-            { name: 'Kokt torsk med potatis', img: 'torsk_potatis.jpg', desc: 'Koka torsk samt potatis. Servera. ' },
+            { name: 'Lax med potatis', img: 'lax_potatis.jpg' },
+            { name: 'Torsk med potatis', img: 'torsk_potatis.jpg' },
 
             { name: 'Pannkakor', img: 'pannkakor.jpg', desc: 'Stek pannkakor. Servera med sylt och grädde. ' },
 
