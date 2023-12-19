@@ -15,11 +15,11 @@ module.exports.getAll = async (req, res) => {
             id: 'asc',
         },
         include: {
-            // categoryOnDish: {
-            //     include: {
-            //         category: true
-            //     }
-            // },
+            categoryOnDish: {
+                include: {
+                    category: true
+                }
+            },
             saved: {
                 where: {
                     userId: req.tokenInfo.id
