@@ -1,5 +1,4 @@
 const { PrismaClient } = require('@prisma/client');
-const { create } = require('../controllers/dish_controller');
 
 const prisma = new PrismaClient();
 
