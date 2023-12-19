@@ -15,11 +15,11 @@ module.exports.getAll = async (req, res) => {
             id: 'asc',
         },
         include: {
-            categoryOnDish: {
-                include: {
-                    category: true
-                }
-            },
+            // categoryOnDish: {
+            //     include: {
+            //         category: true
+            //     }
+            // },
             saved: {
                 where: {
                     userId: req.tokenInfo.id
@@ -44,11 +44,11 @@ module.exports.getOne = async (req, res) => {
             id: parseInt(id)
         },
         include: {
-            categoryOnDish: {
-                include: {
-                    category: true
-                }
-            },
+            // categoryOnDish: {
+            //     include: {
+            //         category: true
+            //     }
+            // },
             saved: {
                 where: {
                     userId: req.tokenInfo.id
@@ -76,11 +76,11 @@ module.exports.search = async (req, res) => {
             id: 'asc',
         },
         include: {
-            categoryOnDish: {
-                include: {
-                    category: true
-                }
-            },
+            // categoryOnDish: {
+            //     include: {
+            //         category: true
+            //     }
+            // },
             saved: {
                 where: {
                     userId: req.tokenInfo.id
