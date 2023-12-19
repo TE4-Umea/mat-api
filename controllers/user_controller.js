@@ -57,6 +57,11 @@ module.exports.delete = async (req, res) => {
             userId: req.tokenInfo.id
         }
     });
+    const saved = await prisma.saved.deleteMany({
+        where: {
+            userId: req.tokenInfo.id
+        }
+    });
 
     const user = await prisma.user.delete({
         where: {
