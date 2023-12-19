@@ -24,7 +24,7 @@ router.get(
 
 // Create /api/saved, creates a new saved dish
 router.post('/',
-    query('dishId').isInt(),
+    body('saved.dishId').isInt(),
     auth,
     savedController.create
 );

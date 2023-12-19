@@ -5,6 +5,7 @@ const cors = require('cors');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const helmet = require('helmet');
+const bodyParser = require('body-parser');
 
 const userRouter = require('./routes/user');
 const mealRouter = require('./routes/meal');
@@ -12,6 +13,12 @@ const dishRouter = require('./routes/dish');
 const imageRouter = require('./routes/image');
 const savedRouter = require('./routes/saved');
 const categoryRouter = require('./routes/category');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 app.use(cors());
 app.use(helmet());
