@@ -331,7 +331,12 @@ new Date(new Date().setDate(new Date().getDate() + 1))
 
 ***
 
-<!-- UPDATE? -->
+<!-- UPDATE finns men bör inte användas.
+```
+PUT /api/meal/:id?dishId=${dishId}&type=${type}&time=${time}&icon=${icon}
+```
+För att uppdatera en måltid. Behöver id från måltiden som ska uppdateras och data från query, specifikt `time`, `type`, `icon` och den valda maträttens id (`dishId`). Om något inte ska uppdateras så kan det skickas med som `null`, skicka därför alltid in dishId, time och type.
+-->
 
 ```
 DELETE /api/meal/:id
@@ -421,7 +426,7 @@ DELETE /api/saved/:id
 För att ta bort en sparad maträtt. Behöver id från maträtten som ska tas bort.
 
 
-### Category - kategorier [COMING SOON]
+### Category - kategorier
 <!-- TODO: fyll i exempel bättre? -->
 
 ```
