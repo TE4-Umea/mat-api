@@ -65,7 +65,11 @@ module.exports.search = async (req, res) => {
 
 // Create /api/saved, creates a new saved that a user has eaten
 module.exports.create = async (req, res) => {
-    const { dishId } = req.query;
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
+
+    const dishId = req.body.saved.dishId;
 
     const exists = await prisma.saved.findFirst({
         where: {
@@ -94,6 +98,10 @@ module.exports.create = async (req, res) => {
 
 // delete /api/saved/:id
 module.exports.delete = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
+
     const { id } = req.params;
 
     // TODO: change

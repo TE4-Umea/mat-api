@@ -24,9 +24,9 @@ router.get(
 
 // Create /api/meal, creates a new meal that a user has eaten
 router.post('/',
-    query('dishId').isInt(),
-    query('time').isISO8601(),
-    query('type').isString().escape(),
+    body('meal.dishId').isInt(),
+    body('meal.time').isISO8601(),
+    body('meal.type').isString().escape(),
     auth,
     mealController.create
 );
@@ -34,9 +34,9 @@ router.post('/',
 // Update /api/meal/:id, updates a meal that a user has eaten
 router.put('/:id',
     param('id').isInt(),
-    query('dishId').isInt().optional({ nullable: true }),
-    query('time').isISO8601().optional({ nullable: true }),
-    query('type').isString().escape().optional({ nullable: true }),
+    body('meal.dishId').isInt().optional({ nullable: true }),
+    body('meal.time').isISO8601().optional({ nullable: true }),
+    body('meal.type').isString().escape().optional({ nullable: true }),
     auth,
     mealController.update
 );

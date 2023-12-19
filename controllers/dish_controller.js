@@ -15,11 +15,11 @@ module.exports.getAll = async (req, res) => {
             id: 'asc',
         },
         include: {
-            categoryOnDish: {
-                include: {
-                    category: true
-                }
-            },
+            // categoryOnDish: {
+            //     include: {
+            //         category: true
+            //     }
+            // },
             saved: {
                 where: {
                     userId: req.tokenInfo.id
@@ -44,11 +44,11 @@ module.exports.getOne = async (req, res) => {
             id: parseInt(id)
         },
         include: {
-            categoryOnDish: {
-                include: {
-                    category: true
-                }
-            },
+            // categoryOnDish: {
+            //     include: {
+            //         category: true
+            //     }
+            // },
             saved: {
                 where: {
                     userId: req.tokenInfo.id
@@ -76,11 +76,11 @@ module.exports.search = async (req, res) => {
             id: 'asc',
         },
         include: {
-            categoryOnDish: {
-                include: {
-                    category: true
-                }
-            },
+            // categoryOnDish: {
+            //     include: {
+            //         category: true
+            //     }
+            // },
             saved: {
                 where: {
                     userId: req.tokenInfo.id
@@ -94,12 +94,13 @@ module.exports.search = async (req, res) => {
 
 // Create /api/dish
 module.exports.create = async (req, res) => {
+    console.log(req.body);
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
     }
 
-    const desc = req.query.desc || null;
-    const { name } = req.query;
+    const name = req.body.dish.name;
+    const desc = req.body.dish.desc || null;
 
     const existingDish = await prisma.dish.findUnique({
         where: {
@@ -138,12 +139,6 @@ module.exports.delete = async (req, res) => {
     }
     const { id } = req.params;
 
-    const dish = await prisma.dish.delete({
-        where: {
-            id: parseInt(id)
-        }
-    });
-
     // Should someone elses past meals and saveds/favorites be deleted when I delete a dish? idk
     // delete all meals with this dishId
     // Should be before dish delete
@@ -163,6 +158,12 @@ module.exports.delete = async (req, res) => {
     //         dishId: parseInt(id)
     //     }
     // });
+
+    const dish = await prisma.dish.delete({
+        where: {
+            id: parseInt(id)
+        }
+    });
 
     res.json(dish); // returns the deleted dish, kinda useless
 };

@@ -65,7 +65,13 @@ module.exports.search = async (req, res) => {
 
 // Create /api/meal, creates a new meal that a user has eaten
 module.exports.create = async (req, res) => {
-    const { dishId, type, time } = req.query;
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
+
+    const dishId = req.body.meal.dishId;
+    const type = req.body.meal.type;
+    const time = req.body.meal.time;
 
     const meal = await prisma.meal.create({
         data: {
@@ -81,11 +87,15 @@ module.exports.create = async (req, res) => {
 // Update /api/meal/:id, updates a meal that a user has eaten
 // not to be used right now, kinda
 module.exports.update = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
+
     const { id } = req.params;
-    const dishId = req.query.dishId || null;
-    const type = req.query.type || null;
-    const time = req.query.time || null;
-    const icon = req.query.icon || null;
+    const dishId = req.body.meal.dishId || null;
+    const type = req.body.meal.type || null;
+    const time = req.body.meal.time || null;
+    const icon = req.body.meal.icon || null;
 
     const meal = await prisma.meal.update({
         where: {
@@ -104,6 +114,10 @@ module.exports.update = async (req, res) => {
 
 // delete /api/meal/:id
 module.exports.delete = async (req, res) => {
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ errors: validationResult(req).array() });
+    }
+
     const { id } = req.params;
 
     const meal = await prisma.meal.delete({
