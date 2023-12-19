@@ -13,13 +13,6 @@ module.exports.getAll = async (req, res) => {
         orderBy: {
             id: 'desc',
         },
-        include: {
-            categoryOnDish: {
-                include: {
-                    dish: true
-                }
-            }
-        },
     });
     res.json(categories);
 };

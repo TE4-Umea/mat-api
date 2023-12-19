@@ -434,15 +434,29 @@ Får ut en specifik kategori och dess maträtter.
 ```json
 {
   "id": 1,
-  "name": "Kött",
-  "categoryOnDish": {
-    "dish": {
-      "id": 1,
-      "name": "Köttbullar med potatismos",
-      "img": "kottbullar_potatismos.jpg",
-      "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
+  "name": "Vegetariansk",
+  "categoryOnDish": [
+    {
+      "categoryId": 1,
+      "dishId": 18,
+      "dish": {
+        "id": 18,
+        "name": "Pannkakor",
+        "img": "pannkakor.jpg",
+        "desc": "Stek pannkakor. Servera med sylt och grädde. "
+      }
     },
-  }
+    {
+      "categoryId": 1,
+      "dishId": 19,
+      "dish": {
+        "id": 19,
+        "name": "Tomatsoppa",
+        "img": "tomatsoppa.jpg",
+        "desc": "Koka tomatsoppa. Servera. "
+      }
+    },
+  ]
 }
 ```
 
