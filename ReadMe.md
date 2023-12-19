@@ -80,7 +80,16 @@ Utdata:
     "name": "Cheeseburgare",
     "img": "kottbullar_potatismos.jpg",
     "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera.",
-    "categoryOnDish": [],
+    "categoryOnDish": [
+      {
+        "categoryId": 3,
+        "dishId": 1,
+        "category": {
+          "id": 3,
+          "name": "Kött"
+        }
+      }
+    ],
     "saved": [
       {
         "id": 1,
@@ -94,7 +103,24 @@ Utdata:
     "name": "Hamburgare",
     "img": null,
     "desc": null,
-    "categoryOnDish": [],
+    "categoryOnDish": [
+      {
+        "categoryId": 1,
+        "dishId": 24,
+        "category": {
+          "id": 1,
+          "name": "Vegetariansk"
+        }
+      },
+      {
+        "categoryId": 2,
+        "dishId": 24,
+        "category": {
+          "id": 2,
+          "name": "Vegansk"
+        }
+      }
+    ],
     "saved": []
   },
   {
