@@ -210,9 +210,19 @@ Du borde kunna använda bilder genom typ denna kod:
 ***
 
 ```
-POST /api/dish?name={name}&desc={desc}
+POST /api/dish
 ```
-För att lägga till en maträtt. Behöver namn data från query samt desc vilket är valfritt. 
+För att lägga till en maträtt. Behöver namn data från body samt desc vilket är valfritt, i ett `dish` objekt. 
+
+Body exempel: 
+```json
+{
+  "dish": {
+    "name": "Köttbullar med potatismos",
+    "desc": "Koka potatis och gör mos. Stek köttbullarna. Servera."
+  }
+}
+```
 
 ***
 
@@ -319,14 +329,24 @@ Du borde kunna använda ikoner genom typ denna kod:
 ***
 
 ```
-POST /api/meal?dishId=${dishId}&type=${type}&time=${time}
+POST /api/meal
 ```
-För att lägga till en måltid. Behöver data från query, specifikt `time`, `type` och den valda maträttens id (`dishId`). `type` ska vara en av `lunch` eller `middag` och `time` ska vara i formatet(?) `Date()`, alltså se ut på detta sätt `new Date("2023-12-06T16:11:52.942Z")`.
-<!-- TODO: date? -->
+För att lägga till en måltid. Behöver data från body i ett `meal` objekt, specifikt `time`, `type` och den valda maträttens id (`dishId`). `type` ska vara en av `lunch` eller `middag` och `time` ska vara i formatet ISO string.
 
 Enklaste sättet att få ut datumet för morgondagen vad jag har hittat är såhär:
 ```js
-new Date(new Date().setDate(new Date().getDate() + 1))
+new Date(new Date().setDate(new Date().getDate() + 1)) || new Date().setDate(new Date().getDate() + 1).toISOString()
+```
+
+Body exempel: 
+```json
+{
+  "meal": {
+    "time": "2023-11-14T00:00:00.000Z",
+    "type": "lunch",
+    "dishId": 1
+  }
+}
 ```
 
 ***
@@ -414,9 +434,18 @@ Tar `name` och visar de senaste 10 sparade maträtter som innehåller det namnet
 ***
 
 ```
-POST /api/saved?dishId=3
+POST /api/saved
 ```
-För att lägga till en sparad maträtt. Behöver data från query, specifikt bara `dishId`.
+För att lägga till en sparad maträtt. Behöver data från body i en `saved` objekt, specifikt bara `dishId`.
+
+Body exempel: 
+```json
+{
+  "saved": {
+    "dishId": 1
+  }
+}
+```
 
 ***
 
