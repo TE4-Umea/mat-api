@@ -335,7 +335,7 @@ För att lägga till en måltid. Behöver data från body i ett `meal` objekt, s
 
 Enklaste sättet att få ut datumet för morgondagen vad jag har hittat är såhär:
 ```js
-new Date(new Date().setDate(new Date().getDate() + 1)) || new Date().setDate(new Date().getDate() + 1).toISOString()
+new Date().setDate(new Date().getDate() + 1).toISOString()
 ```
 
 Body exempel: 
