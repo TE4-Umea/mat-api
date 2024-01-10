@@ -545,3 +545,17 @@ Felmeddelanden kommer ut i denna form:
 * Enkelfnuttar
 
 Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
+
+## Fortsatt arbete (om du skulle fortsätta)
+
+* Problem med senaste prisma migrationen
+
+De senaste två migrationerna gjorde några förändringar som har gjort att kategorier inte funkar ibland, mer specifikt att det fungerar lokalt men inte när jag skulle hosta i en container. Koden som inte fungerade är utkommenterad i dish_controller.js och handlar om att ta med categorierna på dishes. Lösningen som jag skulle rekommendera är att resetta prisma, ta bort alla migrationer och ha schema.prisma komplett innan du migrerar för mycket. Vill du inte resetta prisma så kan du följa error meddelandet som man får om man migrerar på nytt eller kör migrate reset. 
+
+* Utveckla kategorier
+
+Kategorier var en funktion jag gjorde lite snabbt på slutet och skulle kunna bli bättre. 
+
+* Planera med frontend gruppen
+
+Det viktigaste är att planera med frontend gruppen så du vet vad de vill ha och vad de behöver.
