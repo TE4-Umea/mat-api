@@ -116,6 +116,7 @@ module.exports.create = async (req, res) => {
         data: {
             name: name,
             desc: desc,
+            // doesn't work
             // categoryOnDish: {
             //     create: [
             //         {
@@ -159,6 +160,7 @@ module.exports.delete = async (req, res) => {
     //     }
     // });
 
+    // crashes if used in something above
     const dish = await prisma.dish.delete({
         where: {
             id: parseInt(id)

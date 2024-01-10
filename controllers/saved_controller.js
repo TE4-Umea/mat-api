@@ -24,7 +24,6 @@ module.exports.getAll = async (req, res) => {
         skip: 0 + (skip * 40),
     });
     res.json(saveds);
-    //res.json({ saveds: saveds }); // TODO: Which do I use?
 };
 
 // Search /api/saved/search/:name
@@ -93,7 +92,7 @@ module.exports.create = async (req, res) => {
             dishId: parseInt(dishId),       // dishId from hidden(?) in body
         }
     });
-    res.json(saved);     // TODO: do I need to return anything?
+    res.json(saved);
 };
 
 // delete /api/saved/:id
@@ -104,7 +103,6 @@ module.exports.delete = async (req, res) => {
 
     const { id } = req.params;
 
-    // TODO: change
     const saved = await prisma.saved.delete({
         where: {
             id: parseInt(id)

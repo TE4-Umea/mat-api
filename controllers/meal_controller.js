@@ -24,7 +24,6 @@ module.exports.getAll = async (req, res) => {
         skip: 0 + (skip * 40),
     });
     res.json(meals);
-    //res.json({ meals: meals }); // TODO: Which do I use?
 };
 
 // Search /api/meal/search/:name
@@ -81,11 +80,11 @@ module.exports.create = async (req, res) => {
             time: time                      // time from dropdown
         }
     });
-    res.json(meal);     // TODO: do I need to return anything?
+    res.json(meal);
 };
 
 // Update /api/meal/:id, updates a meal that a user has eaten
-// not to be used right now, kinda
+// not to be used right now, kinda wack if caller doesn't send all fields
 module.exports.update = async (req, res) => {
     if (!validationResult(req).isEmpty()) {
         return res.status(400).json({ errors: validationResult(req).array() });
