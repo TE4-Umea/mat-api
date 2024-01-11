@@ -1,0 +1,535 @@
+{
+    "v": 2,
+    "name": "mat",
+    "folders": [],
+    "requests": [
+        {
+            "body": {
+                "body": null,
+                "contentType": null
+            },
+            "auth": {
+                "token": "<<jwt-token>>",
+                "authActive": true,
+                "authType": "bearer"
+            },
+            "testScript": "",
+            "method": "GET",
+            "v": "1",
+            "name": "get dish",
+            "endpoint": "http://<<prod>>/api/dish/",
+            "params": [],
+            "headers": [
+                {
+                    "value": "<<jwt-token>>",
+                    "key": "jwt-token",
+                    "active": true
+                }
+            ],
+            "preRequestScript": ""
+        },
+        {
+            "endpoint": "http://<<prod>>/api/dish?page=1",
+            "auth": {
+                "authActive": true,
+                "token": "<<jwt-token>>",
+                "authType": "bearer"
+            },
+            "name": "get dish with pagi",
+            "method": "GET",
+            "testScript": "",
+            "v": "1",
+            "headers": [
+                {
+                    "key": "jwt-token",
+                    "active": true,
+                    "value": "<<jwt-token>>"
+                }
+            ],
+            "params": [],
+            "preRequestScript": "",
+            "body": {
+                "contentType": null,
+                "body": null
+            }
+        },
+        {
+            "auth": {
+                "authActive": true,
+                "authType": "none"
+            },
+            "preRequestScript": "",
+            "name": "Get dish/:id",
+            "endpoint": "http://localhost:3000/api/dish/1",
+            "method": "GET",
+            "body": {
+                "contentType": null,
+                "body": null
+            },
+            "params": [],
+            "v": "1",
+            "headers": [
+                {
+                    "active": true,
+                    "key": "jwt-token",
+                    "value": "<<jwt-token>>"
+                }
+            ],
+            "testScript": ""
+        },
+        {
+            "testScript": "",
+            "preRequestScript": "",
+            "headers": [
+                {
+                    "key": "jwt-token",
+                    "active": true,
+                    "value": "<<jwt-token>>"
+                }
+            ],
+            "params": [],
+            "method": "GET",
+            "body": {
+                "body": null,
+                "contentType": null
+            },
+            "v": "1",
+            "name": "Get dish search",
+            "auth": {
+                "authType": "none",
+                "authActive": true
+            },
+            "endpoint": "http://<<prod>>/api/dish/search/fisk"
+        },
+        {
+            "testScript": "",
+            "headers": [],
+            "auth": {
+                "authType": "bearer",
+                "authActive": true,
+                "token": "<<jwt-token>>"
+            },
+            "body": {
+                "body": "{\n  \"dish\": {\n\t  \"name\": \"köttberg\",\n  \t\"desc\": \"namnam\"\n  }\n}",
+                "contentType": "application/json"
+            },
+            "params": [],
+            "method": "POST",
+            "endpoint": "http://localhost:3000/api/dish",
+            "name": "Create new dish",
+            "v": "1",
+            "preRequestScript": ""
+        },
+        {
+            "endpoint": "http://<<prod>>/api/dish/27",
+            "v": "1",
+            "preRequestScript": "",
+            "headers": [
+                {
+                    "active": true,
+                    "key": "jwt-token",
+                    "value": "<<jwt-token>>"
+                }
+            ],
+            "testScript": "",
+            "method": "DELETE",
+            "body": {
+                "body": null,
+                "contentType": null
+            },
+            "name": "Delete dish",
+            "auth": {
+                "authType": "bearer",
+                "authActive": true,
+                "token": "<<jwt-token>>"
+            },
+            "params": []
+        },
+        {
+            "body": {
+                "body": null,
+                "contentType": null
+            },
+            "endpoint": "http://<<prod>>/api/meal/",
+            "params": [],
+            "headers": [
+                {
+                    "key": "jwt-token",
+                    "active": true,
+                    "value": "<<jwt-token>>"
+                }
+            ],
+            "preRequestScript": "",
+            "v": "1",
+            "name": "get meals",
+            "method": "GET",
+            "testScript": "",
+            "auth": {
+                "authActive": true,
+                "authType": "bearer",
+                "token": "<<jwt-token>>"
+            }
+        },
+        {
+            "headers": [
+                {
+                    "active": true,
+                    "value": "<<jwt-token>>",
+                    "key": "jwt-token"
+                }
+            ],
+            "testScript": "",
+            "method": "GET",
+            "v": "1",
+            "auth": {
+                "token": "<<jwt-token>>",
+                "authActive": true,
+                "authType": "bearer"
+            },
+            "body": {
+                "contentType": null,
+                "body": null
+            },
+            "endpoint": "http://localhost:3000/api/meal?page=0",
+            "params": [],
+            "name": "get meal with pagination",
+            "preRequestScript": ""
+        },
+        {
+            "auth": {
+                "authType": "none",
+                "authActive": true
+            },
+            "v": "1",
+            "endpoint": "http://localhost:3000/api/meal/search/kött",
+            "method": "GET",
+            "testScript": "",
+            "preRequestScript": "",
+            "name": "Get meals search",
+            "body": {
+                "contentType": null,
+                "body": null
+            },
+            "params": [],
+            "headers": [
+                {
+                    "value": "<<jwt-token>>",
+                    "key": "jwt-token",
+                    "active": true
+                }
+            ]
+        },
+        {
+            "auth": {
+                "authActive": true,
+                "token": "<<jwt-token>>",
+                "authType": "bearer"
+            },
+            "headers": [
+                {
+                    "active": true,
+                    "key": "jwt-token",
+                    "value": "<<jwt-token>>"
+                }
+            ],
+            "v": "1",
+            "method": "POST",
+            "endpoint": "http://localhost:3000/api/meal/",
+            "body": {
+                "body": "{\n  \"meal\": {\n\t  \"dishId\": \"1\",\n  \t\"type\": \"middag\",\n    \"time\":<<Date>>\n  }\n}",
+                "contentType": "application/json"
+            },
+            "testScript": "",
+            "name": "Create new meal",
+            "preRequestScript": "",
+            "params": []
+        },
+        {
+            "name": "update meal",
+            "params": [],
+            "body": {
+                "body": null,
+                "contentType": null
+            },
+            "testScript": "",
+            "auth": {
+                "authType": "none",
+                "authActive": true
+            },
+            "headers": [
+                {
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoiaGphbG1hckBnbWFpbC5jb20iLCJpYXQiOjE3MDA3Mzk2MjZ9.G0pr98txb_7kE4D9mf4vKp2NzjISrroeVNvG_MlbPcM",
+                    "active": true,
+                    "key": "jwt-token"
+                }
+            ],
+            "endpoint": "http://localhost:3000/api/meal/11",
+            "preRequestScript": "",
+            "method": "PUT",
+            "v": "1"
+        },
+        {
+            "name": "Delete meal",
+            "testScript": "",
+            "params": [],
+            "body": {
+                "contentType": null,
+                "body": null
+            },
+            "method": "DELETE",
+            "auth": {
+                "authActive": true,
+                "authType": "none"
+            },
+            "v": "1",
+            "headers": [
+                {
+                    "key": "jwt-token",
+                    "active": true,
+                    "value": "<<jwt-token>>"
+                }
+            ],
+            "endpoint": "http://localhost:3000/api/meal/10",
+            "preRequestScript": ""
+        },
+        {
+            "params": [],
+            "auth": {
+                "authActive": true,
+                "authType": "none"
+            },
+            "headers": [],
+            "preRequestScript": "",
+            "name": "Get users",
+            "endpoint": "http://localhost:3000/api/user/",
+            "testScript": "",
+            "method": "GET",
+            "body": {
+                "body": null,
+                "contentType": null
+            },
+            "v": "1"
+        },
+        {
+            "body": {
+                "contentType": null,
+                "body": null
+            },
+            "endpoint": "http://jupiter.umea-ntig.se:3008/api/user/lundmarkhjalmar@gmail.com",
+            "method": "POST",
+            "auth": {
+                "authActive": true,
+                "authType": "none"
+            },
+            "name": "create user",
+            "params": [],
+            "testScript": "",
+            "preRequestScript": "",
+            "v": "1",
+            "headers": []
+        },
+        {
+            "params": [],
+            "headers": [
+                {
+                    "key": "jwt-token",
+                    "active": true,
+                    "value": "<<jwt-token>>"
+                }
+            ],
+            "method": "DELETE",
+            "body": {
+                "contentType": null,
+                "body": null
+            },
+            "auth": {
+                "authActive": true,
+                "authType": "none"
+            },
+            "endpoint": "http://localhost:3000/api/user/",
+            "preRequestScript": "",
+            "name": "Delete user",
+            "v": "1",
+            "testScript": ""
+        },
+        {
+            "params": [],
+            "endpoint": "http://<<prod>>/api/saved/",
+            "body": {
+                "body": null,
+                "contentType": null
+            },
+            "headers": [],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+                "authType": "bearer",
+                "token": "<<jwt-token>>",
+                "authActive": true
+            },
+            "v": "1",
+            "name": "Get saved",
+            "method": "GET"
+        },
+        {
+            "testScript": "",
+            "name": "Get saved search",
+            "endpoint": "http://localhost:3000/api/saved/search/burg",
+            "v": "1",
+            "body": {
+                "body": null,
+                "contentType": null
+            },
+            "headers": [],
+            "preRequestScript": "",
+            "method": "GET",
+            "auth": {
+                "authActive": true,
+                "token": "<<jwt-token>>",
+                "authType": "bearer"
+            },
+            "params": []
+        },
+        {
+            "headers": [
+                {
+                    "value": "<<jwt-token>>",
+                    "key": "jwt-token",
+                    "active": true
+                }
+            ],
+            "body": {
+                "contentType": "application/json",
+                "body": "{\n  \"saved\": {\n\t  \"dishId\": 17\n  }\n}"
+            },
+            "method": "POST",
+            "v": "1",
+            "auth": {
+                "authActive": true,
+                "authType": "bearer",
+                "token": "<<jwt-token>>"
+            },
+            "testScript": "",
+            "params": [],
+            "name": "Create saved",
+            "endpoint": "http://<<host>>/api/saved",
+            "preRequestScript": ""
+        },
+        {
+            "method": "DELETE",
+            "name": "Delete saved",
+            "preRequestScript": "",
+            "testScript": "",
+            "endpoint": "http://<<prod>>/api/saved/31",
+            "headers": [
+                {
+                    "value": "<<jwt-token>>",
+                    "active": true,
+                    "key": "jwt-token"
+                }
+            ],
+            "params": [],
+            "auth": {
+                "authType": "bearer",
+                "token": "<<jwt-token>>",
+                "authActive": true
+            },
+            "body": {
+                "body": null,
+                "contentType": null
+            },
+            "v": "1"
+        },
+        {
+            "method": "GET",
+            "params": [],
+            "v": "1",
+            "auth": {
+                "authType": "bearer",
+                "authActive": true,
+                "token": "<<jwt-token>>"
+            },
+            "endpoint": "http://<<host>>/api/category",
+            "headers": [
+                {
+                    "active": true,
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoiaGphbG1hckBnbWFpbC5jb20iLCJpYXQiOjE3MDA3Mzk2MjZ9.G0pr98txb_7kE4D9mf4vKp2NzjISrroeVNvG_MlbPcM",
+                    "key": "jwt-token"
+                }
+            ],
+            "preRequestScript": "",
+            "testScript": "",
+            "body": {
+                "body": null,
+                "contentType": null
+            },
+            "name": "get categories"
+        },
+        {
+            "v": "1",
+            "name": "Get specific category",
+            "endpoint": "http://localhost:3000/api/category/1",
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+                "authType": "bearer",
+                "authActive": true,
+                "token": "<<jwt-token>>"
+            },
+            "method": "GET",
+            "params": [],
+            "headers": [
+                {
+                    "active": true,
+                    "key": "jwt-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoiaGphbG1hckBnbWFpbC5jb20iLCJpYXQiOjE3MDA3Mzk2MjZ9.G0pr98txb_7kE4D9mf4vKp2NzjISrroeVNvG_MlbPcM"
+                }
+            ],
+            "body": {
+                "contentType": null,
+                "body": null
+            }
+        },
+        {
+            "method": "GET",
+            "endpoint": "http://<<prod>>/api/img/hamburgare.jpg",
+            "testScript": "",
+            "headers": [],
+            "params": [],
+            "v": "1",
+            "body": {
+                "contentType": null,
+                "body": null
+            },
+            "name": "img",
+            "auth": {
+                "authActive": true,
+                "authType": "none"
+            },
+            "preRequestScript": ""
+        },
+        {
+            "name": "icons",
+            "body": {
+                "contentType": null,
+                "body": null
+            },
+            "headers": [],
+            "v": "1",
+            "params": [],
+            "preRequestScript": "",
+            "method": "GET",
+            "endpoint": "http://localhost:3000/api/img/icons/pfp.jpeg",
+            "testScript": "",
+            "auth": {
+                "authActive": true,
+                "authType": "none"
+            }
+        }
+    ],
+    "auth": {
+        "authType": "inherit",
+        "authActive": true
+    },
+    "headers": []
+}

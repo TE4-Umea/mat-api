@@ -546,6 +546,9 @@ Felmeddelanden kommer ut i denna form:
 
 Commit meddelanden ska börja med: feat, fix, docs, style, refactor.
 
+## Hur man testar API:et
+För att testa har jag använt mig av [Hoppscotch.io](https://hoppscotch.io/) för att köra requests. Om du vill testa kan du ladda ner [hoppscotch.json](./hoppscotch.json) och importera den i Hoppscotch. Vissa requests kanske inte fungerar eller måste uppdateras lite. 
+
 ## Fortsatt arbete (om du skulle fortsätta)
 
 * Problem med senaste prisma migrationen
