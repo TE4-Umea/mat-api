@@ -1,5 +1,5 @@
 # API för en matapp
-API:et ligger uppe på [http://jupiter.umea-ntig.se:3008/](http://jupiter.umea-ntig.se:3008/). 
+API:et ligger uppe på [http://jupiter.umea-ntig.se:3008/](http://jupiter.umea-ntig.se:3008/). Det är hostat i en container med [PM2](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-22-04#step-2-installing-pm2) på jupiter. 
 
 ## JWT Token
 När du loggar in skapas det en JWT token av din info som kommer tillbaka till dig i frontenden och som du ska spara i localstorage. Den tokenen ska skickas med i headern som en authorization på alla requests som görs till API:et. När du loggar ut ska du ta bort tokenen från localstorage.
